@@ -1,0 +1,22 @@
+{
+  "schema_version": "2.0.0",
+  "run_id": "bad-major-version",
+  "dataset_id": "golden-001",
+  "dataset_revision": "v1",
+  "estimator_id": "stitching-vo",
+  "estimator_version": "test-fixture",
+  "estimator_config": {},
+  "evaluator_capture_version": "test-fixture",
+  "environment": {
+    "hostname": "test-host",
+    "os": "test-os",
+    "cpu_model": "test-cpu",
+    "jvm_version": "19.0.2",
+    "heap_max_mb": 1024,
+    "is_target_hardware": false
+  },
+  "run_timestamp": "2026-08-12T00:00:00Z",
+  "frame_count": 10,
+  "processed_count": 10,
+  "completed": true
+}

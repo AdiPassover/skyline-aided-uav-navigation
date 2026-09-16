@@ -1,0 +1,118 @@
+{
+  "chance_baseline": {
+    "n_references": 6,
+    "recall_at_1": 0.16666666666666666
+  },
+  "created_utc": "2026-09-02T14:04:39Z",
+  "experiment": "EXP-SKY-007",
+  "feature": "20260902-163608-sky-simulator-viewpoint",
+  "geodetic_origin": {
+    "alt_m": 0.0,
+    "is_synthetic": true,
+    "lat_deg": 0.0,
+    "lon_deg": 0.0
+  },
+  "interpretation_matrix": {
+    "case_1_extraction_problem": "GT retrieval succeeds (Recall@1 >= 5/6 on stage-0/near queries and >= 2/3 overall) while SegFormer (or DP) is materially lower (>= 2 queries flip) -> the bottleneck is extraction.",
+    "case_2_representation_problem": "GT itself fails (Recall@1 within 2 queries of the extractor sources and < 2/3 overall) -> the bottleneck is representation/matching/discriminability, not extraction.",
+    "case_3_viable": "GT and at least one extractor both >= 2/3 overall with positive margins on the majority of correct answers -> the current pipeline is viable in this regime.",
+    "case_4_geometry_dominated": "GT Recall@1 declines monotonically with displacement bin and falls below 1/2 in the largest bin -> characterise the geometric deformation before any matcher work.",
+    "note": "evaluated separately per query axis (displacement; condition); the axes may land in different cases"
+  },
+  "limitations": "PILOT/DEV evidence, naveval tier T2 (ue5_simulator): one level (asian_village_hills_background), six anchors (chance baseline 1/6), uneven condition cells (anchor a0 has no DUSK and carries the only CLOUDY captures), manual capture spacing (~11-25 m), one base altitude, pitch/roll signs declared but unverified (no R0-S render), quaternion convention not discriminable on a level batch. No DEV/final split is possible with six anchors, so no parameter is tuned here; descriptive statistics only, no significance claims, no real-flight or onboard claim.",
+  "matcher": {
+    "baselines": [
+      "ncc"
+    ],
+    "block": {
+      "acceptance": {
+        "ambiguity_margin_sigma": 1.0,
+        "confidence_k": 5.0,
+        "degenerate_profile_std": 1e-06,
+        "reject_threshold": 0.5,
+        "viable_sigma": 3.0
+      },
+      "lag_search": false,
+      "profile": {
+        "detrend": false,
+        "n_samples": 256,
+        "normalize_mean": true,
+        "units": "image_fraction"
+      },
+      "recall_k": 5
+    },
+    "primary_baseline": "ncc"
+  },
+  "metrics": [
+    "Recall@1",
+    "Recall@k",
+    "correct-reference rank",
+    "correct-reference score",
+    "best-incorrect score",
+    "score margin",
+    "acceptance/rejection",
+    "confident-false rate",
+    "sliced by condition_translation_m bin, direction class, condition_hour (time of day), condition_clouds, and curve source"
+  ],
+  "prereg_version": "1.0.0",
+  "sources": {
+    "dp": {
+      "method_config_digest": "2b8d643d0364344f3189ccdec717d1c1887f06456028c9b84a9f2d4d13ec7c58",
+      "method_id": "poc_robust_dp",
+      "provenance": "automatic:poc_robust_dp"
+    },
+    "segformer": {
+      "closing_px": 0,
+      "convert_version": "1.0.0",
+      "full_width_policy": {
+        "invalid_columns": "top_edge",
+        "refusal_mechanism": "no curve for references (database hole); for queries a sentinel flat curve at the top edge, which the unchanged matcher's degenerate-profile rule turns into EXTRACTION_FAILURE with no position",
+        "status_not_ok": "extraction_failure",
+        "top_edge_row": 0.0
+      },
+      "label_map_digest": "24e84386058cd40f64b37e2adb95c7c3c34d2768db4d0b80d164f64150fbcebb",
+      "method_id": "segformer_b0_ade20k",
+      "min_valid_frac": 0.5,
+      "model_revision": "489d5cd81a0b59fab9b7ea758d3548ebe99677da",
+      "policy_version": "1.1.0",
+      "provenance": "automatic:segformer_b0_ade20k",
+      "scale_tag": "s512"
+    },
+    "sim_exact": {
+      "gt": true,
+      "kind": "sim_observation_store_exact",
+      "provenance": "oracle:sim_exact"
+    }
+  },
+  "task": {
+    "deform_task_digest": "1b570eddef302a5f24a1eeddf8a48bf36403c9486892d1ac9ef051d8f8d4c86f",
+    "grid_counts": {
+      "250": 6
+    },
+    "name": "pilot",
+    "reference_observation_ids": [
+      "Run_20260902_154534__sky_000001",
+      "Run_20260902_154646__sky_000001",
+      "Run_20260902_160512__sky_000001",
+      "Run_20260902_155745__sky_000001",
+      "Run_20260902_160113__sky_000001",
+      "Run_20260902_160139__sky_000001"
+    ],
+    "spacings_m": [
+      250.0
+    ],
+    "stage_rule": {
+      "attitude_eps_deg": 0.5,
+      "require_attitude": true,
+      "same_pose_m": 0.5,
+      "yaw_eps_deg": 0.5
+    },
+    "task_digest": "b3fb977d99c640b19e4d9ccde4d422e4b0738796a7249e6a50e6174f25714aae",
+    "tolerances": {
+      "250": {
+        "tau_near_m": 250.0,
+        "tau_pos_m": 125.0
+      }
+    }
+  }
+}

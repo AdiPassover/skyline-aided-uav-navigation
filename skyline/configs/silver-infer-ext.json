@@ -1,0 +1,22 @@
+{
+  "_comment": [
+    "SegFormer inference config for the EXTENDED simulator batch (feature 20260903-225416).",
+    "Run with the ISOLATED SegFormer venv only (see README.md); the script imports no hsreloc module.",
+    "frame_list is written by `python -m hsreloc.simret.cli silver-list --config configs/sim-final.json`.",
+    "Model, preprocessing, sky class and conversion are the FROZEN EXP-SKY-005 ones.",
+    "out_root is DELIBERATELY separate from the pilot's silver_sim_segformer_b0 so the pilot's",
+    "pinned inference manifest is never rewritten (research R4 note).",
+    "WARNING: rendered imagery is out of ADE20K's photographic domain; PROT-SKY-001 §5 DEV",
+    "inspection (T013) gates naming this source primary."
+  ],
+  "mode": "sessions",
+  "frame_list": "../../observations_sim/silver_frames_ext.csv",
+  "sessions": null,
+  "out_root": "../../silver_masks/silver_sim_ext_segformer_b0",
+  "scales_short_side": [512],
+  "model": {
+    "repo_id": "nvidia/segformer-b0-finetuned-ade-512-512",
+    "revision": "489d5cd81a0b59fab9b7ea758d3548ebe99677da"
+  },
+  "torch_threads": 4
+}

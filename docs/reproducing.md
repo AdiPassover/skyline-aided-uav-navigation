@@ -1,0 +1,205 @@
+# Reproducing the reported results
+
+This maps the results of Chapter 4 of the thesis to the code that produced them. There is no single
+command that rebuilds the chapter. Each result is a pipeline of the form *ingest → Java run → Python
+analysis*, and most analysis scripts read the run records and intermediate outputs of earlier steps
+from `runs/` and `evaluations/` (see `docs/data.md`).
+
+All commands run from the repository root unless stated otherwise. `$PY` is a Python with
+`evaluation/requirements.txt` and `skyline/requirements.txt` installed. The Java drivers are run
+from the installed distribution:
+
+```bash
+./gradlew installDist
+CP="build/install/skyline-aided-uav-navigation/lib/*"
+java -cp "$CP" org.boofcv.evaluation.VoRunnerApp --config <run-config.json>
+```
+
+Identifiers such as `EXP-INT-003` or `DEC-VO-010` in file names, configs and comments refer to
+experiment and decision records of the development log. Those records are not part of this
+repository; the thesis is the citable account of each experiment.
+
+Several thesis figures were restyled for the manuscript outside this repository. The scripts below
+produce the numbers and research versions of those figures, not the final typeset images.
+
+---
+
+## Integrated navigation (Section 4.5)
+
+Thirteen simulated trajectories from twelve recordings, flown in the UE5 environment. Dataset ids
+and their source recordings (under `important simulator runs/`):
+
+| dataset id | recording | role |
+|---|---|---|
+| `fig8-flat-const-v1` | `figure_8_flat_surface/Run_20260907_140138` | development |
+| `fig8-flat-vary-v1` | `figure_8_flat_surface/Run_20260907_140549` | development |
+| `mtn-r1-const-v1` | `eight_figure_mountains_less_steep/Run_20260907_145801` | development |
+| `mtn-r2-vary-v1` | `eight_figure_mountains_less_steep/Run_20260907_150845` | development (also the injected-loss track) |
+| `mtn-r3-vary-v1` | `eight_figure_mountains_less_steep/Run_20260907_151617` | development |
+| `interesting-r1-vary-v1` | `interesting_path/Run_20260907_165110` | long evaluation recording |
+| `interesting-r3-const-v1` | `interesting_path/Run_20260907_175403` | low-drift control |
+| `easier-sq-const-v1` | `hopefully_easier/Run_20260907_231953` | development |
+| `ho1-mtn-fig8-vary-v1` | `held_out1/Run_20260908_130747` | held out |
+| `ho1-mtn-fig8-scaled-vary-v1` | `held_out1/Run_20260908_131337` | held out |
+| `ho1-vil-fig8-vary-v1` | `held_out1/Run_20260908_133522` | held out |
+| `ho1-mtn-trinity-vary-v1` | `held_out1/Run_20260908_141325` | held out |
+
+**1. Ingest the nadir stream** (`--role constant_height` for `*-const-*`, `varying_height` for
+`*-vary-*`):
+
+```bash
+$PY evaluation/tools/int/ingest_ue_run_int.py --source "important simulator runs/held_out1/Run_20260908_130747" \
+    --dataset-id ho1-mtn-fig8-vary-v1 --out-root datasets --role varying_height
+```
+
+**2. Ingest both horizon views** into observation sessions, one config per recording and view
+(run from `skyline/`). The two `fig8-flat-*` datasets reuse the sessions ingested by
+`sky_matcher_resolution.py --stage ingest` into `observations_sim_fig8/`.
+
+```bash
+cd skyline
+$PY -m hsreloc.simret.cli ingest --config ../evaluation/eval_configs/int/skyline-sessions/Run_20260908_130747-north.json
+$PY -m hsreloc.simret.cli ingest --config ../evaluation/eval_configs/int/skyline-sessions/Run_20260908_130747-west.json
+cd ..
+```
+
+**3. Export the skyline profiles** into the dataset, paired to nadir frames by the simulator's own
+capture identity:
+
+```bash
+$PY evaluation/tools/int/export_skyline_profiles.py \
+    --session-dir observations_sim_int/Run_20260908_130747-north \
+    --west-session-dir observations_sim_int/Run_20260908_130747-west \
+    --source sim_exact \
+    --vo-frames datasets/ho1-mtn-fig8-vary-v1/frames.csv \
+    --sim-observations "important simulator runs/held_out1/Run_20260908_130747/skyline/observations.csv" \
+    --out datasets/ho1-mtn-fig8-vary-v1
+```
+
+**4. Run the local-only baseline and the live integrated arm** for each dataset. The configs are
+under `evaluation/eval_configs/int/exp-int-00{1,2,3}/` (`run-<id>-vo-only.json`,
+`run-<id>-int-c0.json`; `exp-int-001/run-mtn-r2-vary-v1-vo-only-synthetic-loss.json` injects the two
+losses). The frozen acceptance policy used by every integrated arm is
+`evaluation/eval_configs/int/exp-int-002/reloc-c0-primary-retry20.json`
+(SHA-256 `b5457092c59767319bf8c40d993549c667ff4238b13eb0f7789660643ef80399`).
+
+```bash
+java -cp "$CP" org.boofcv.evaluation.VoRunnerApp --config evaluation/eval_configs/int/exp-int-003/run-ho1-mtn-fig8-vary-v1-vo-only.json
+java -cp "$CP" org.boofcv.evaluation.VoRunnerApp --config evaluation/eval_configs/int/exp-int-003/run-ho1-mtn-fig8-vary-v1-int-c0.json
+```
+
+**5. Compare the correction policies** (Tables "Correction policies compared" and "Trajectory error
+under each correction policy", the recovery results). The script replays the frozen policy and the
+two top-match policies in `evaluation/eval_configs/int/claim-closure-2026-09/` over the thirteen
+recorded local-only tracks with `RelocalizationReplayApp` (byte-identical to the live loop, which
+`RelocalizationReplayAppTest` asserts), then scores each with `evaluate_int_arms.py`:
+
+```bash
+$PY evaluation/tools/claim_closure/int_comparison_arms.py --out evaluations/claim-closure-2026-09/int
+$PY evaluation/tools/claim_closure/int_figures.py --out evaluations/claim-closure-2026-09/int
+```
+
+A single dataset can be scored directly:
+
+```bash
+$PY evaluation/tools/int/evaluate_int_arms.py --dataset datasets/ho1-mtn-fig8-vary-v1 \
+    --vo-only runs/exp-int-003-ho1-mtn-fig8-vary-v1-vo-only \
+    --int int_c0=runs/exp-int-003-ho1-mtn-fig8-vary-v1-int-c0 --out evaluations/exp-int-003/ho1-mtn-fig8-vary-v1
+```
+
+The gate values of the frozen policy were selected on the development recordings with
+`evaluation/tools/int/dev_calibration_sweep.py`. The remaining scripts in `evaluation/tools/int/`
+(`gt_revisit_events.py`, `snap_longitudinal.py`, `revisit_opportunity_table.py`,
+`vo_quality_report.py`, `synthetic_drift_sweep.py`) are the diagnostics behind the discussion of
+when a genuine correction helps or harms.
+
+---
+
+## Skyline place evidence (Section 4.4)
+
+Run from `skyline/`. Each study has `audit`, `ingest`, `score` and `report` stages; `ingest` also
+writes the frame list for SegFormer inference, which runs in its own environment
+(`skyline/README.md`) between `ingest` and `score`. Profiles from the simulator's exact masks need
+no inference.
+
+| result | command(s) | raw data |
+|---|---|---|
+| One view against two, false acceptances on the hard city set | `scripts/sky_dual_study.py --config configs/sky-dual.json`, then `scripts/sky_dual_hardcity.py --config configs/sky-dual-hardcity.json`, then `scripts/sky_matcher_resolution.py --config configs/sky-matcher-resolution.json` (stages `audit ingest score score-terrain score-hardcity report`); consolidated by `../evaluation/tools/claim_closure/sky_consolidate.py` | `simulator_skyline_data_both_directions/` |
+| Recognition across the nine rendered conditions | `python -m hsreloc.simret.cli` with `configs/sim-final.json`: `validate`, `ingest`, `extract-dp`, `silver-list` (+ `scripts/silver_infer.py --config configs/silver-infer-ext.json`), `ext-index`, `ext-sets`, then `ext-run` and `ext-exp-exactpose` with `--population dev` (village) and `--population final` (mountains, city) | `simulator_skyline_data_extended/` |
+| Sensitivity to the assumed viewing direction | `PYTHONPATH=. python ../evaluation/tools/claim_closure/sky_azimuth_tolerance.py --out ../evaluations/claim-closure-2026-09/sky` (reads the outputs of the two-view studies) | `simulator_skyline_data_both_directions/` |
+| Recognition range from a stored reference | `scripts/sky_recog_radius.py --config configs/sky-recog.json --stage all` | `simulator_skyline_data_extended/` (via `observations_sim/`) |
+| Reference storage | `python ../evaluation/tools/claim_closure/sky_compactness.py --out ../evaluations/claim-closure-2026-09/sky` | `simulator_skyline_data_both_directions/` |
+
+The studies are ordered: `sky_dual_hardcity.py` scores against the memory built by
+`sky_dual_study.py` and aborts unless it reproduces that study's frozen scores, and
+`sky_matcher_resolution.py` rebuilds both and checks them the same way.
+
+---
+
+## Local visual motion estimation (Section 4.2)
+
+Recorded-flight results use MARS-LVIG, fetched from its MCAP mirror on Hugging Face
+(`DapengFeng/MCAP`, `mars_lvig/<scene>/<scene>_0.mcap`). The windows (UTC seconds):
+
+| window | dataset id | scene | cruise window |
+|---|---|---|---|
+| development (`hk-b`) | `hkairport01-b` | HKairport01 | 1671606510.406 – 1671607126.188 |
+| prefix of `hk-b` | `hkairport01-a` | HKairport01 | 1671606510.406 – 1671606690.406 |
+| validation (`am-c`) | `amtown01-c` | AMtown01 | 1658137128.011 – 1658137758.011 |
+| metric scale (`am-d`) | `amtown01-d` | AMtown01 | 1658137128.011 – 1658138317.359 |
+| health, held out (`hk-03`) | `hkairport03` | HKairport03 | 1671607449.978 – 1671607667.372 |
+| health, held out (`am-03`) | `amtown03` | AMtown03 | 1658131910.487 – 1658132361.268 |
+
+Datasets are built with `evaluation/tools/exp_vo_007/ingest_sequence.py`;
+`exp_vo_007/fetch_amtown01.sh` and `exp_vo_013/fetch_amtown01_full.sh` record the complete argument
+sets for the AMtown01 windows, and `exp_vo_007/derive_yaw_offset.py` derives the per-sequence
+heading offset those scripts require. Camera intrinsics come from the UAVScenes calibration files.
+
+| result | code |
+|---|---|
+| Representation × motion model table, trajectory figure | capture configs `evaluation/eval_configs/exp-vo-{004,006,007,009}/`, evaluation configs `evaluation/configs/eval-*.json` (`python -m naveval.evaluate`), `evaluation/tools/exp_vo_006/rigid_readout.py`, `exp_vo_007/analyse.py` (or `exp_vo_007/run_all.sh`), `exp_vo_009/analyse.py`; tables collected by `vo_closure/canonical_results.py`; figure `thesis_figures/trajectory_comparison.py` |
+| Residual accumulation figure | `thesis_figures/residual_accumulation.py`, `vo_closure/closure_figures.py` |
+| Rigid-reduction granularity | `exp_vo_008/schedule_sweep.py` |
+| Motion model as a sensitivity axis | `exp_vo_005/` (rendered planar imagery, ±10° roll), `exp_vo_009/` (`run_all.sh`; variance theory, rotation across models, timing) and `org.boofcv.stitching.diagnostics.ModelRotationMonteCarloApp` |
+| Heading error, ground-truth substitution, refinement | `exp_vo_010/` (`run_all.sh`; `heading_metrics.py`, `refinement_delta.py`, `analyse.py`), `exp_vo_008/heading_baseline.py`, `exp_vo_008/substitution.py`, `org.boofcv.stitching.diagnostics.RefinementMonteCarloApp` |
+| Visual scale bias, time-reversed replay | `exp_vo_011/` (see its README), `org.boofcv.stitching.diagnostics.ScaleBiasMonteCarloApp`, `ScaleBiasParityApp` |
+| External height on analytically rendered terrain (arms A/B/C) | `exp_vo_012/synth_terrain.py` (renderer), configs `evaluation/eval_configs/exp-vo-012/`, `exp_vo_012/analyse.py`, `exp_vo_012/emit_tables.py` |
+| Constant vs varying height in the game engine | `exp_vo_014/ingest_ue_run.py` on `simulator_vo_data/Run_20260904_172033` (constant) and `Run_20260904_174825` (varying), configs `evaluation/eval_configs/exp-vo-014/`, `exp_vo_014/analyse.py` |
+| Height channels over the `am-d` cruise | `exp_vo_013/` (`altitude_sources.py` reads the LiDAR, `analyse.py`, `plot_exp_vo_013.py`), config `evaluation/eval_configs/exp-vo-013/` |
+
+The runtime metric and heading readouts are checked against an independent Python implementation:
+`evaluation/tools/vo_metric_runtime/` holds the frozen reference that
+`MetricReadoutPythonParityTest` reads, and `vo_heading_runtime/` the replay inputs and analysis for
+the heading channel.
+
+---
+
+## Estimator health (Section 4.3)
+
+Enable the observer with `"diagnostic_refit_sidecar": true` in a run config (it writes
+`diagnostic_refit.csv` and leaves `frames.csv` unchanged).
+
+| result | code |
+|---|---|
+| Target validity (RTK heading resolution, fused attitude) | `evaluation/tools/exp_conf_002/rtk_target_audit.py` |
+| Independent reference panel, two groups | `exp_conf_002/panel.py` (needs imagery), `exp_conf_002/panel_analysis.py` |
+| Audit examples figure | `exp_conf_002/build_audit.py`, `exp_conf_004/render_corrected_figures.py`, `reports/thesis_conf_figures.py` |
+| Refit disagreement on the unseen flights | configs `evaluation/eval_configs/exp-conf-005/`, `exp_conf_005/analysis.py` |
+| Common-mode analysis and refit counterfactual | `exp_conf_003/` (`phase_a.py` needs imagery), `exp_conf_004/analysis.py` |
+| Comparison of eleven candidate signals | `claim_closure/conf_benchmark.py` |
+| Navigation unchanged with the observer on and off | `exp_conf_001/verify_bit_identity.py` |
+
+---
+
+## Computational cost (Section 4.6)
+
+`evaluation/tools/claim_closure/resources_summary.py` assembles the table from the per-frame timings
+in the run records, `exp_vo_009/timing_compare.py` and `exp_vo_010/timing_compare.py` (motion stage),
+the `timing` configs of `exp-conf-005` (observer), and the integration-layer benchmark:
+
+```bash
+java -cp "build/install/skyline-aided-uav-navigation/lib/*" evaluation/tools/claim_closure/IntLayerBench.java \
+    <vo-run> <policy.json> <skyline_profiles.csv> <repetitions> <out.json>
+```
+
+Timings were taken on one development laptop and describe that machine only.

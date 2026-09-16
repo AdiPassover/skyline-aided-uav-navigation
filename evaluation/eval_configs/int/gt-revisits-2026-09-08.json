@@ -1,0 +1,861 @@
+{
+  "mtn_r1": {
+    "run_id": "eight_figure_mountains_less_steep/Run_20260907_145801",
+    "dataset_id": "mtn-r1-const-v1",
+    "n_frames": 1156,
+    "n_candidate_pairs": 16674,
+    "n_revisit_events": 3,
+    "events": [
+      {
+        "first_pass_frame_id": 10,
+        "first_pass_time_s": 1.0,
+        "first_pass_xy_m": [
+          443.737273381,
+          3.802747558
+        ],
+        "return_pass_frame_id": 1126,
+        "return_pass_time_s": 112.6,
+        "return_pass_xy_m": [
+          443.818685668,
+          4.003352095
+        ],
+        "separation_m": 0.2164984941482544,
+        "elapsed_time_s": 111.6,
+        "agl_first_m": 70.580276,
+        "agl_return_m": 70.578146,
+        "agl_diff_m": -0.00212999999999397,
+        "heading_first_deg": 359.999817,
+        "heading_return_deg": 359.999817,
+        "heading_diff_deg": 0.0,
+        "n_candidate_pairs_in_cluster": 3528,
+        "nearest_observation_first": {
+          "obs_index": 0,
+          "obs_id": "sky_000001",
+          "time_offset_s": 2.4
+        },
+        "nearest_observation_return": {
+          "obs_index": 53,
+          "obs_id": "sky_000054",
+          "time_offset_s": -0.5
+        },
+        "vo_position_error_at_return_pass_m": 25.169593648317885,
+        "vo_position_error_at_first_pass_m": 0.010882651253940464
+      },
+      {
+        "first_pass_frame_id": 22,
+        "first_pass_time_s": 2.2,
+        "first_pass_xy_m": [
+          449.374101963,
+          3.873799279
+        ],
+        "return_pass_frame_id": 582,
+        "return_pass_time_s": 58.2,
+        "return_pass_xy_m": [
+          449.400283668,
+          4.673355655
+        ],
+        "separation_m": 0.7999839186668396,
+        "elapsed_time_s": 56.0,
+        "agl_first_m": 70.525517,
+        "agl_return_m": 70.520527,
+        "agl_diff_m": -0.004989999999992278,
+        "heading_first_deg": 359.999817,
+        "heading_return_deg": 359.999817,
+        "heading_diff_deg": 0.0,
+        "n_candidate_pairs_in_cluster": 6015,
+        "nearest_observation_first": {
+          "obs_index": 0,
+          "obs_id": "sky_000001",
+          "time_offset_s": 1.1999999999999997
+        },
+        "nearest_observation_return": {
+          "obs_index": 27,
+          "obs_id": "sky_000028",
+          "time_offset_s": 0.5999999999999943
+        },
+        "vo_position_error_at_return_pass_m": 5.661781602757761,
+        "vo_position_error_at_first_pass_m": 0.03172879885453835
+      },
+      {
+        "first_pass_frame_id": 567,
+        "first_pass_time_s": 56.7,
+        "first_pass_xy_m": [
+          438.356467062,
+          4.516381735
+        ],
+        "return_pass_frame_id": 1119,
+        "return_pass_time_s": 111.9,
+        "return_pass_xy_m": [
+          438.678482518,
+          4.426453089
+        ],
+        "separation_m": 0.3343426287174225,
+        "elapsed_time_s": 55.2,
+        "agl_first_m": 70.614773,
+        "agl_return_m": 70.613941,
+        "agl_diff_m": -0.0008320000000026084,
+        "heading_first_deg": 359.999817,
+        "heading_return_deg": 359.999817,
+        "heading_diff_deg": 0.0,
+        "n_candidate_pairs_in_cluster": 7131,
+        "nearest_observation_first": {
+          "obs_index": 26,
+          "obs_id": "sky_000027",
+          "time_offset_s": 0.0
+        },
+        "nearest_observation_return": {
+          "obs_index": 53,
+          "obs_id": "sky_000054",
+          "time_offset_s": 0.19999999999998863
+        },
+        "vo_position_error_at_return_pass_m": 25.163914244060066,
+        "vo_position_error_at_first_pass_m": 5.73797040135208
+      }
+    ]
+  },
+  "mtn_r2": {
+    "run_id": "eight_figure_mountains_less_steep/Run_20260907_150845",
+    "dataset_id": "mtn-r2-vary-v1",
+    "n_frames": 1178,
+    "n_candidate_pairs": 17240,
+    "n_revisit_events": 3,
+    "events": [
+      {
+        "first_pass_frame_id": 9,
+        "first_pass_time_s": 0.9,
+        "first_pass_xy_m": [
+          443.458795734,
+          3.799678149
+        ],
+        "return_pass_frame_id": 1148,
+        "return_pass_time_s": 114.8,
+        "return_pass_xy_m": [
+          443.46508976,
+          4.006093541
+        ],
+        "separation_m": 0.20651112496852875,
+        "elapsed_time_s": 113.89999999999999,
+        "agl_first_m": 70.583556,
+        "agl_return_m": 70.601495,
+        "agl_diff_m": 0.017938999999998373,
+        "heading_first_deg": 359.999817,
+        "heading_return_deg": 359.999817,
+        "heading_diff_deg": 0.0,
+        "n_candidate_pairs_in_cluster": 3597,
+        "nearest_observation_first": {
+          "obs_index": 0,
+          "obs_id": "sky_000001",
+          "time_offset_s": 2.5
+        },
+        "nearest_observation_return": {
+          "obs_index": 54,
+          "obs_id": "sky_000055",
+          "time_offset_s": -0.5999999999999943
+        },
+        "vo_position_error_at_return_pass_m": 17.750318443610944,
+        "vo_position_error_at_first_pass_m": 0.0482750361340841
+      },
+      {
+        "first_pass_frame_id": 22,
+        "first_pass_time_s": 2.2,
+        "first_pass_xy_m": [
+          449.374141773,
+          3.873860295
+        ],
+        "return_pass_frame_id": 598,
+        "return_pass_time_s": 59.8,
+        "return_pass_xy_m": [
+          449.44119637,
+          4.675951855
+        ],
+        "separation_m": 0.8048889636993408,
+        "elapsed_time_s": 57.599999999999994,
+        "agl_first_m": 70.525516,
+        "agl_return_m": 69.804406,
+        "agl_diff_m": -0.7211099999999959,
+        "heading_first_deg": 359.999817,
+        "heading_return_deg": 359.999817,
+        "heading_diff_deg": 0.0,
+        "n_candidate_pairs_in_cluster": 6386,
+        "nearest_observation_first": {
+          "obs_index": 0,
+          "obs_id": "sky_000001",
+          "time_offset_s": 1.1999999999999997
+        },
+        "nearest_observation_return": {
+          "obs_index": 27,
+          "obs_id": "sky_000028",
+          "time_offset_s": -1.0
+        },
+        "vo_position_error_at_return_pass_m": 2.754436217191298,
+        "vo_position_error_at_first_pass_m": 0.08646318343626912
+      },
+      {
+        "first_pass_frame_id": 583,
+        "first_pass_time_s": 58.3,
+        "first_pass_xy_m": [
+          438.420135309,
+          4.527203196
+        ],
+        "return_pass_frame_id": 1141,
+        "return_pass_time_s": 114.1,
+        "return_pass_xy_m": [
+          438.33814777,
+          4.479026611
+        ],
+        "separation_m": 0.0951055958867073,
+        "elapsed_time_s": 55.8,
+        "agl_first_m": 70.586403,
+        "agl_return_m": 70.384233,
+        "agl_diff_m": -0.2021700000000095,
+        "heading_first_deg": 359.999817,
+        "heading_return_deg": 359.999817,
+        "heading_diff_deg": 0.0,
+        "n_candidate_pairs_in_cluster": 7257,
+        "nearest_observation_first": {
+          "obs_index": 27,
+          "obs_id": "sky_000028",
+          "time_offset_s": 0.5
+        },
+        "nearest_observation_return": {
+          "obs_index": 54,
+          "obs_id": "sky_000055",
+          "time_offset_s": 0.10000000000000853
+        },
+        "vo_position_error_at_return_pass_m": 17.705427568736233,
+        "vo_position_error_at_first_pass_m": 2.771942992146803
+      }
+    ]
+  },
+  "mtn_r3": {
+    "run_id": "eight_figure_mountains_less_steep/Run_20260907_151617",
+    "dataset_id": "mtn-r3-vary-v1",
+    "n_frames": 1178,
+    "n_candidate_pairs": 17240,
+    "n_revisit_events": 3,
+    "events": [
+      {
+        "first_pass_frame_id": 9,
+        "first_pass_time_s": 0.9,
+        "first_pass_xy_m": [
+          -410.83138989,
+          63.419883138
+        ],
+        "return_pass_frame_id": 1148,
+        "return_pass_time_s": 114.8,
+        "return_pass_xy_m": [
+          -410.824824914,
+          63.626084855
+        ],
+        "separation_m": 0.20630401372909546,
+        "elapsed_time_s": 113.89999999999999,
+        "agl_first_m": 64.538904,
+        "agl_return_m": 64.569405,
+        "agl_diff_m": 0.030501000000001,
+        "heading_first_deg": 359.999817,
+        "heading_return_deg": 359.999817,
+        "heading_diff_deg": 0.0,
+        "n_candidate_pairs_in_cluster": 3597,
+        "nearest_observation_first": {
+          "obs_index": 0,
+          "obs_id": "sky_000001",
+          "time_offset_s": 2.5
+        },
+        "nearest_observation_return": {
+          "obs_index": 54,
+          "obs_id": "sky_000055",
+          "time_offset_s": -0.5999999999999943
+        },
+        "vo_position_error_at_return_pass_m": 55.2126263836642,
+        "vo_position_error_at_first_pass_m": 0.09744266360901198
+      },
+      {
+        "first_pass_frame_id": 22,
+        "first_pass_time_s": 2.2,
+        "first_pass_xy_m": [
+          -404.915801717,
+          63.493955184
+        ],
+        "return_pass_frame_id": 598,
+        "return_pass_time_s": 59.8,
+        "return_pass_xy_m": [
+          -404.848643837,
+          64.295953794
+        ],
+        "separation_m": 0.8048059940338135,
+        "elapsed_time_s": 57.599999999999994,
+        "agl_first_m": 64.03718,
+        "agl_return_m": 63.323352,
+        "agl_diff_m": -0.7138280000000066,
+        "heading_first_deg": 359.999817,
+        "heading_return_deg": 359.999817,
+        "heading_diff_deg": 0.0,
+        "n_candidate_pairs_in_cluster": 6386,
+        "nearest_observation_first": {
+          "obs_index": 0,
+          "obs_id": "sky_000001",
+          "time_offset_s": 1.1999999999999997
+        },
+        "nearest_observation_return": {
+          "obs_index": 27,
+          "obs_id": "sky_000028",
+          "time_offset_s": -1.0
+        },
+        "vo_position_error_at_return_pass_m": 54.11941555228174,
+        "vo_position_error_at_first_pass_m": 0.1895813532682427
+      },
+      {
+        "first_pass_frame_id": 583,
+        "first_pass_time_s": 58.3,
+        "first_pass_xy_m": [
+          -415.869705031,
+          64.147236079
+        ],
+        "return_pass_frame_id": 1141,
+        "return_pass_time_s": 114.1,
+        "return_pass_xy_m": [
+          -415.951767546,
+          64.099014376
+        ],
+        "separation_m": 0.09520941227674484,
+        "elapsed_time_s": 55.8,
+        "agl_first_m": 64.941254,
+        "agl_return_m": 64.736681,
+        "agl_diff_m": -0.20457299999999634,
+        "heading_first_deg": 359.999817,
+        "heading_return_deg": 359.999817,
+        "heading_diff_deg": 0.0,
+        "n_candidate_pairs_in_cluster": 7257,
+        "nearest_observation_first": {
+          "obs_index": 27,
+          "obs_id": "sky_000028",
+          "time_offset_s": 0.5
+        },
+        "nearest_observation_return": {
+          "obs_index": 54,
+          "obs_id": "sky_000055",
+          "time_offset_s": 0.10000000000000853
+        },
+        "vo_position_error_at_return_pass_m": 55.05856614541667,
+        "vo_position_error_at_first_pass_m": 54.23743963057569
+      }
+    ]
+  },
+  "interesting_r1": {
+    "run_id": "interesting_path/Run_20260907_165110",
+    "dataset_id": "interesting-r1-vary-v1",
+    "n_frames": 5910,
+    "n_candidate_pairs": 49624,
+    "n_revisit_events": 4,
+    "events": [
+      {
+        "first_pass_frame_id": 0,
+        "first_pass_time_s": 0.0,
+        "first_pass_xy_m": [
+          -962.130161272,
+          -1211.263930225
+        ],
+        "return_pass_frame_id": 5909,
+        "return_pass_time_s": 590.9,
+        "return_pass_xy_m": [
+          -961.365473025,
+          -1211.158267705
+        ],
+        "separation_m": 0.7719650268554688,
+        "elapsed_time_s": 590.9,
+        "agl_first_m": 201.399804,
+        "agl_return_m": 201.447063,
+        "agl_diff_m": 0.04725900000002525,
+        "heading_first_deg": 359.999817,
+        "heading_return_deg": 359.999817,
+        "heading_diff_deg": 0.0,
+        "n_candidate_pairs_in_cluster": 2040,
+        "nearest_observation_first": {
+          "obs_index": 0,
+          "obs_id": "sky_000001",
+          "time_offset_s": 3.7
+        },
+        "nearest_observation_return": {
+          "obs_index": 285,
+          "obs_id": "sky_000286",
+          "time_offset_s": -0.8999999999999773
+        },
+        "vo_position_error_at_return_pass_m": 173.79000607477496,
+        "vo_position_error_at_first_pass_m": 0.0
+      },
+      {
+        "first_pass_frame_id": 809,
+        "first_pass_time_s": 80.9,
+        "first_pass_xy_m": [
+          -634.925716151,
+          -870.84764
+        ],
+        "return_pass_frame_id": 5232,
+        "return_pass_time_s": 523.2,
+        "return_pass_xy_m": [
+          -634.867596413,
+          -870.801514596
+        ],
+        "separation_m": 0.07419826835393906,
+        "elapsed_time_s": 442.30000000000007,
+        "agl_first_m": 216.289931,
+        "agl_return_m": 221.627983,
+        "agl_diff_m": 5.338052000000005,
+        "heading_first_deg": 359.999817,
+        "heading_return_deg": 359.999817,
+        "heading_diff_deg": 0.0,
+        "n_candidate_pairs_in_cluster": 14558,
+        "nearest_observation_first": {
+          "obs_index": 38,
+          "obs_id": "sky_000039",
+          "time_offset_s": 0.7999999999999972
+        },
+        "nearest_observation_return": {
+          "obs_index": 252,
+          "obs_id": "sky_000253",
+          "time_offset_s": -0.900000000000091
+        },
+        "vo_position_error_at_return_pass_m": 422.59789083868014,
+        "vo_position_error_at_first_pass_m": 350.52935067561634
+      },
+      {
+        "first_pass_frame_id": 1413,
+        "first_pass_time_s": 141.3,
+        "first_pass_xy_m": [
+          -543.865085375,
+          -1189.92081787
+        ],
+        "return_pass_frame_id": 4773,
+        "return_pass_time_s": 477.3,
+        "return_pass_xy_m": [
+          -543.717408274,
+          -1189.583198331
+        ],
+        "separation_m": 0.36842843890190125,
+        "elapsed_time_s": 336.0,
+        "agl_first_m": 177.4062,
+        "agl_return_m": 172.995047,
+        "agl_diff_m": -4.411153000000013,
+        "heading_first_deg": 359.999817,
+        "heading_return_deg": 359.999817,
+        "heading_diff_deg": 0.0,
+        "n_candidate_pairs_in_cluster": 18504,
+        "nearest_observation_first": {
+          "obs_index": 67,
+          "obs_id": "sky_000068",
+          "time_offset_s": -0.10000000000002274
+        },
+        "nearest_observation_return": {
+          "obs_index": 230,
+          "obs_id": "sky_000231",
+          "time_offset_s": -0.10000000000002274
+        },
+        "vo_position_error_at_return_pass_m": 418.1958866762661,
+        "vo_position_error_at_first_pass_m": 374.699202790637
+      },
+      {
+        "first_pass_frame_id": 2139,
+        "first_pass_time_s": 213.9,
+        "first_pass_xy_m": [
+          -410.767176933,
+          -1597.679851864
+        ],
+        "return_pass_frame_id": 4166,
+        "return_pass_time_s": 416.6,
+        "return_pass_xy_m": [
+          -410.803888157,
+          -1597.585657803
+        ],
+        "separation_m": 0.10102315992116928,
+        "elapsed_time_s": 202.70000000000002,
+        "agl_first_m": 245.049903,
+        "agl_return_m": 245.575846,
+        "agl_diff_m": 0.5259430000000123,
+        "heading_first_deg": 359.999817,
+        "heading_return_deg": 359.999817,
+        "heading_diff_deg": 0.0,
+        "n_candidate_pairs_in_cluster": 14522,
+        "nearest_observation_first": {
+          "obs_index": 102,
+          "obs_id": "sky_000103",
+          "time_offset_s": -1.0
+        },
+        "nearest_observation_return": {
+          "obs_index": 200,
+          "obs_id": "sky_000201",
+          "time_offset_s": -0.9000000000000341
+        },
+        "vo_position_error_at_return_pass_m": 197.76843099424494,
+        "vo_position_error_at_first_pass_m": 177.81891284844573
+      }
+    ]
+  },
+  "interesting_r2": {
+    "run_id": "interesting_path/Run_20260907_172910",
+    "dataset_id": "interesting-r2-vary-v1",
+    "n_frames": 2697,
+    "n_candidate_pairs": 39255,
+    "n_revisit_events": 4,
+    "events": [
+      {
+        "first_pass_frame_id": 0,
+        "first_pass_time_s": 0.0,
+        "first_pass_xy_m": [
+          -753.550261982,
+          201.126066905
+        ],
+        "return_pass_frame_id": 2696,
+        "return_pass_time_s": 269.6,
+        "return_pass_xy_m": [
+          -752.892844149,
+          201.487144401
+        ],
+        "separation_m": 0.750038743019104,
+        "elapsed_time_s": 269.6,
+        "agl_first_m": 22.576193,
+        "agl_return_m": 22.579891,
+        "agl_diff_m": 0.003697999999999979,
+        "heading_first_deg": 359.999817,
+        "heading_return_deg": 359.999817,
+        "heading_diff_deg": 0.0,
+        "n_candidate_pairs_in_cluster": 3103,
+        "nearest_observation_first": {
+          "obs_index": 0,
+          "obs_id": "sky_000001",
+          "time_offset_s": 3.8
+        },
+        "nearest_observation_return": {
+          "obs_index": 127,
+          "obs_id": "sky_000128",
+          "time_offset_s": -0.6000000000000227
+        },
+        "vo_position_error_at_return_pass_m": 19.76845266768997,
+        "vo_position_error_at_first_pass_m": 0.0
+      },
+      {
+        "first_pass_frame_id": 371,
+        "first_pass_time_s": 37.1,
+        "first_pass_xy_m": [
+          -606.842535828,
+          354.268418536
+        ],
+        "return_pass_frame_id": 2385,
+        "return_pass_time_s": 238.5,
+        "return_pass_xy_m": [
+          -606.781470452,
+          354.474329615
+        ],
+        "separation_m": 0.21475791931152344,
+        "elapsed_time_s": 201.4,
+        "agl_first_m": 54.351182,
+        "agl_return_m": 56.723405,
+        "agl_diff_m": 2.372222999999998,
+        "heading_first_deg": 359.999817,
+        "heading_return_deg": 359.999817,
+        "heading_diff_deg": 0.0,
+        "n_candidate_pairs_in_cluster": 10904,
+        "nearest_observation_first": {
+          "obs_index": 16,
+          "obs_id": "sky_000017",
+          "time_offset_s": -0.5
+        },
+        "nearest_observation_return": {
+          "obs_index": 112,
+          "obs_id": "sky_000113",
+          "time_offset_s": -0.8000000000000114
+        },
+        "vo_position_error_at_return_pass_m": 60.350023284844895,
+        "vo_position_error_at_first_pass_m": 65.58278525938525
+      },
+      {
+        "first_pass_frame_id": 644,
+        "first_pass_time_s": 64.4,
+        "first_pass_xy_m": [
+          -565.576948333,
+          210.067012356
+        ],
+        "return_pass_frame_id": 2177,
+        "return_pass_time_s": 217.7,
+        "return_pass_xy_m": [
+          -565.479482022,
+          210.218941398
+        ],
+        "separation_m": 0.18051114678382874,
+        "elapsed_time_s": 153.29999999999998,
+        "agl_first_m": 82.525791,
+        "agl_return_m": 80.34093,
+        "agl_diff_m": -2.184860999999998,
+        "heading_first_deg": 359.999817,
+        "heading_return_deg": 359.999817,
+        "heading_diff_deg": 0.0,
+        "n_candidate_pairs_in_cluster": 14341,
+        "nearest_observation_first": {
+          "obs_index": 30,
+          "obs_id": "sky_000031",
+          "time_offset_s": 0.8999999999999915
+        },
+        "nearest_observation_return": {
+          "obs_index": 102,
+          "obs_id": "sky_000103",
+          "time_offset_s": -0.5
+        },
+        "vo_position_error_at_return_pass_m": 85.12661316221005,
+        "vo_position_error_at_first_pass_m": 77.34765341279157
+      },
+      {
+        "first_pass_frame_id": 1000,
+        "first_pass_time_s": 100.0,
+        "first_pass_xy_m": [
+          -483.390574221,
+          22.693312806
+        ],
+        "return_pass_frame_id": 1872,
+        "return_pass_time_s": 187.2,
+        "return_pass_xy_m": [
+          -483.344023956,
+          22.901749532
+        ],
+        "separation_m": 0.21356751024723053,
+        "elapsed_time_s": 87.19999999999999,
+        "agl_first_m": 80.93358,
+        "agl_return_m": 81.110454,
+        "agl_diff_m": 0.17687399999999798,
+        "heading_first_deg": 359.999817,
+        "heading_return_deg": 359.999817,
+        "heading_diff_deg": 0.0,
+        "n_candidate_pairs_in_cluster": 10907,
+        "nearest_observation_first": {
+          "obs_index": 47,
+          "obs_id": "sky_000048",
+          "time_offset_s": 0.20000000000000284
+        },
+        "nearest_observation_return": {
+          "obs_index": 87,
+          "obs_id": "sky_000088",
+          "time_offset_s": -0.799999999999983
+        },
+        "vo_position_error_at_return_pass_m": 197.28489547447148,
+        "vo_position_error_at_first_pass_m": 187.74263437622045
+      }
+    ]
+  },
+  "interesting_r3": {
+    "run_id": "interesting_path/Run_20260907_175403",
+    "dataset_id": "interesting-r3-const-v1",
+    "n_frames": 1253,
+    "n_candidate_pairs": 43538,
+    "n_revisit_events": 6,
+    "events": [
+      {
+        "first_pass_frame_id": 0,
+        "first_pass_time_s": 0.0,
+        "first_pass_xy_m": [
+          -169.080602003,
+          -473.813952697
+        ],
+        "return_pass_frame_id": 382,
+        "return_pass_time_s": 38.2,
+        "return_pass_xy_m": [
+          -169.130406544,
+          -473.447506185
+        ],
+        "separation_m": 0.36982405185699463,
+        "elapsed_time_s": 38.2,
+        "agl_first_m": 84.759007,
+        "agl_return_m": 84.802991,
+        "agl_diff_m": 0.043984000000008905,
+        "heading_first_deg": 359.999817,
+        "heading_return_deg": 359.999817,
+        "heading_diff_deg": 0.0,
+        "n_candidate_pairs_in_cluster": 3638,
+        "nearest_observation_first": {
+          "obs_index": 0,
+          "obs_id": "sky_000001",
+          "time_offset_s": 3.4
+        },
+        "nearest_observation_return": {
+          "obs_index": 17,
+          "obs_id": "sky_000018",
+          "time_offset_s": 0.29999999999999716
+        },
+        "vo_position_error_at_return_pass_m": 7.468353950104866,
+        "vo_position_error_at_first_pass_m": 0.0
+      },
+      {
+        "first_pass_frame_id": 88,
+        "first_pass_time_s": 8.8,
+        "first_pass_xy_m": [
+          -176.281786449,
+          -528.115018857
+        ],
+        "return_pass_frame_id": 809,
+        "return_pass_time_s": 80.9,
+        "return_pass_xy_m": [
+          -176.156853104,
+          -528.146487002
+        ],
+        "separation_m": 0.12883250415325165,
+        "elapsed_time_s": 72.10000000000001,
+        "agl_first_m": 80.133811,
+        "agl_return_m": 80.138918,
+        "agl_diff_m": 0.005107000000009521,
+        "heading_first_deg": 359.999817,
+        "heading_return_deg": 359.999817,
+        "heading_diff_deg": 0.0,
+        "n_candidate_pairs_in_cluster": 10463,
+        "nearest_observation_first": {
+          "obs_index": 3,
+          "obs_id": "sky_000004",
+          "time_offset_s": 0.6999999999999993
+        },
+        "nearest_observation_return": {
+          "obs_index": 38,
+          "obs_id": "sky_000039",
+          "time_offset_s": 0.7999999999999972
+        },
+        "vo_position_error_at_return_pass_m": 7.3821413303816765,
+        "vo_position_error_at_first_pass_m": 2.854626521596063
+      },
+      {
+        "first_pass_frame_id": 92,
+        "first_pass_time_s": 9.2,
+        "first_pass_xy_m": [
+          -175.120968698,
+          -530.825279052
+        ],
+        "return_pass_frame_id": 1155,
+        "return_pass_time_s": 115.5,
+        "return_pass_xy_m": [
+          -174.852151133,
+          -530.987764399
+        ],
+        "separation_m": 0.314132422208786,
+        "elapsed_time_s": 106.3,
+        "agl_first_m": 79.969266,
+        "agl_return_m": 79.963794,
+        "agl_diff_m": -0.00547200000001169,
+        "heading_first_deg": 359.999817,
+        "heading_return_deg": 359.999817,
+        "heading_diff_deg": 0.0,
+        "n_candidate_pairs_in_cluster": 10307,
+        "nearest_observation_first": {
+          "obs_index": 3,
+          "obs_id": "sky_000004",
+          "time_offset_s": 0.3000000000000007
+        },
+        "nearest_observation_return": {
+          "obs_index": 54,
+          "obs_id": "sky_000055",
+          "time_offset_s": -0.29999999999999716
+        },
+        "vo_position_error_at_return_pass_m": 5.0892168798915876,
+        "vo_position_error_at_first_pass_m": 3.2344153051983464
+      },
+      {
+        "first_pass_frame_id": 378,
+        "first_pass_time_s": 37.8,
+        "first_pass_xy_m": [
+          -166.218236527,
+          -473.918426129
+        ],
+        "return_pass_frame_id": 734,
+        "return_pass_time_s": 73.4,
+        "return_pass_xy_m": [
+          -166.331302557,
+          -473.725458775
+        ],
+        "separation_m": 0.22364898025989532,
+        "elapsed_time_s": 35.60000000000001,
+        "agl_first_m": 85.400448,
+        "agl_return_m": 85.431722,
+        "agl_diff_m": 0.03127399999999625,
+        "heading_first_deg": 359.999817,
+        "heading_return_deg": 359.999817,
+        "heading_diff_deg": 0.0,
+        "n_candidate_pairs_in_cluster": 5195,
+        "nearest_observation_first": {
+          "obs_index": 17,
+          "obs_id": "sky_000018",
+          "time_offset_s": 0.7000000000000028
+        },
+        "nearest_observation_return": {
+          "obs_index": 34,
+          "obs_id": "sky_000035",
+          "time_offset_s": 0.09999999999999432
+        },
+        "vo_position_error_at_return_pass_m": 8.10207684788966,
+        "vo_position_error_at_first_pass_m": 7.706163536823888
+      },
+      {
+        "first_pass_frame_id": 382,
+        "first_pass_time_s": 38.2,
+        "first_pass_xy_m": [
+          -169.130406544,
+          -473.447506185
+        ],
+        "return_pass_frame_id": 1252,
+        "return_pass_time_s": 125.2,
+        "return_pass_xy_m": [
+          -168.962630983,
+          -474.60779459
+        ],
+        "separation_m": 1.1723449230194092,
+        "elapsed_time_s": 87.0,
+        "agl_first_m": 84.802991,
+        "agl_return_m": 84.659425,
+        "agl_diff_m": -0.14356600000000697,
+        "heading_first_deg": 359.999817,
+        "heading_return_deg": 359.999817,
+        "heading_diff_deg": 0.0,
+        "n_candidate_pairs_in_cluster": 3264,
+        "nearest_observation_first": {
+          "obs_index": 17,
+          "obs_id": "sky_000018",
+          "time_offset_s": 0.29999999999999716
+        },
+        "nearest_observation_return": {
+          "obs_index": 58,
+          "obs_id": "sky_000059",
+          "time_offset_s": -1.0
+        },
+        "vo_position_error_at_return_pass_m": 3.8223000755916083,
+        "vo_position_error_at_first_pass_m": 7.468353950104866
+      },
+      {
+        "first_pass_frame_id": 749,
+        "first_pass_time_s": 74.9,
+        "first_pass_xy_m": [
+          -167.98178064,
+          -484.664024506
+        ],
+        "return_pass_frame_id": 1230,
+        "return_pass_time_s": 123.0,
+        "return_pass_xy_m": [
+          -167.997075471,
+          -484.652639195
+        ],
+        "separation_m": 0.01906139776110649,
+        "elapsed_time_s": 48.099999999999994,
+        "agl_first_m": 80.702506,
+        "agl_return_m": 80.700143,
+        "agl_diff_m": -0.0023630000000025575,
+        "heading_first_deg": 359.999817,
+        "heading_return_deg": 359.999817,
+        "heading_diff_deg": 0.0,
+        "n_candidate_pairs_in_cluster": 10671,
+        "nearest_observation_first": {
+          "obs_index": 35,
+          "obs_id": "sky_000036",
+          "time_offset_s": 0.5999999999999943
+        },
+        "nearest_observation_return": {
+          "obs_index": 57,
+          "obs_id": "sky_000058",
+          "time_offset_s": -1.0
+        },
+        "vo_position_error_at_return_pass_m": 3.8105524070240517,
+        "vo_position_error_at_first_pass_m": 7.948519697713607
+      }
+    ]
+  }
+}

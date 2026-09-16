@@ -1,0 +1,7 @@
+anchor_id,east_m,north_m,up_m,heading_deg,radius_m,notes
+a0,-15.329996,-316.171512,47.060621,0,10,cluster_00 - richest cell set (DAWN/DAY x CLEAR/CLOUDY/VERY_CLOUDY + duplicates; no DUSK); translation E/N/U runs start here
+a1,-229.919996,-60.161512,47.060621,0,10,cluster_01 - full 6-cell design + 2 extra DAY+CLEAR; translation E/W/U/N runs start here (W run starts 5.7 m west)
+a2,-755.369996,-1168.871512,47.060621,0,10,cluster_02 - exact 6-cell design; no duplicates (montage anchor per research R10)
+a3,26.670004,6.728488,47.060621,0,10,cluster_03 - exact 6-cell design
+a4,642.190004,107.258488,47.060621,0,10,cluster_04 - exact 6-cell design
+a5,805.110004,-782.401512,47.060621,0,10,cluster_05 - exact 6-cell design

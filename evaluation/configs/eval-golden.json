@@ -1,0 +1,6 @@
+{
+  "evaluation_id": "eval-golden-001",
+  "run_record": "../tests/fixtures/golden_run",
+  "dataset": "../tests/fixtures/golden_dataset",
+  "naveval_version": "0.1.0"
+}

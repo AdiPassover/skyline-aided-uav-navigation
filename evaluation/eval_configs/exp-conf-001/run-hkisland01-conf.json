@@ -1,0 +1,14 @@
+{
+  "dataset_dir": "datasets/hkisland01",
+  "output_dir": "runs",
+  "run_id": "hkisland01-homography-rigid-conf-v1",
+  "estimator_id": "stitching-vo",
+  "estimator_version": "exp-conf-001-p5",
+  "is_target_hardware": false,
+  "downsampleFactor": 2,
+  "motion_model": "homography",
+  "navigation_source": "rigid_motion",
+  "refineEstimate": false,
+  "logical_transform_sidecar": true,
+  "confidence_calibration": "evaluation/confidence_configs/devfit-p995-unvalidated-v1.json"
+}

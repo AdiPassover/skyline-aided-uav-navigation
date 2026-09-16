@@ -1,0 +1,239 @@
+{
+  "_comment": [
+    "The one pilot config for the 2026-09-02 simulator batch (feature 20260902-163608-sky-simulator-viewpoint).",
+    "Consumed by every hsreloc.simret.cli command; paths resolve relative to this file.",
+    "The conventions block is deliberate: altitude datum = UE world Z zero (only relative altitudes are",
+    "interpreted; owner decision D14 pending); pitch/roll signs declared, quaternion convention not",
+    "discriminable on this level batch - both standing warnings ride every session record."
+  ],
+  "raw_root": "../../simulator_skyline_data",
+  "store_root": "../../observations_sim",
+  "conventions": {
+    "ue_world_axes": "x_north_y_east",
+    "altitude_datum_ue_cm": 0.0,
+    "altitude_datum": "ue_world_z_zero",
+    "pitch_sign": "positive_up",
+    "roll_sign": "positive_clockwise_image",
+    "attitude_order": "ZYX",
+    "quaternion_convention": null,
+    "verified_by": null
+  },
+  "options": {
+    "image_mode": "copy",
+    "preserve_nadir": true,
+    "gt_min_valid_frac": 1.0,
+    "mask_binarity_tolerance": 0.001
+  },
+  "sessions": [
+    "Run_20260902_154341",
+    "Run_20260902_154352",
+    "Run_20260902_154420",
+    "Run_20260902_154449",
+    "Run_20260902_154458",
+    "Run_20260902_154510",
+    "Run_20260902_154534",
+    "Run_20260902_154544",
+    "Run_20260902_154611",
+    "Run_20260902_154634",
+    "Run_20260902_154646",
+    "Run_20260902_154710",
+    "Run_20260902_154724",
+    "Run_20260902_154742",
+    "Run_20260902_154750",
+    "Run_20260902_154822",
+    "Run_20260902_155745",
+    "Run_20260902_155814",
+    "Run_20260902_155832",
+    "Run_20260902_155842",
+    "Run_20260902_155856",
+    "Run_20260902_155906",
+    "Run_20260902_160007",
+    "Run_20260902_160023",
+    "Run_20260902_160037",
+    "Run_20260902_160047",
+    "Run_20260902_160104",
+    "Run_20260902_160113",
+    "Run_20260902_160139",
+    "Run_20260902_160155",
+    "Run_20260902_160229",
+    "Run_20260902_160241",
+    "Run_20260902_160250",
+    "Run_20260902_160302",
+    "Run_20260902_160407",
+    "Run_20260902_160419",
+    "Run_20260902_160436",
+    "Run_20260902_160448",
+    "Run_20260902_160503",
+    "Run_20260902_160512",
+    "Run_20260902_160627",
+    "Run_20260902_160636",
+    "Run_20260902_160657",
+    "Run_20260902_160711",
+    "Run_20260902_160735",
+    "Run_20260902_160749",
+    "Run_20260902_160801",
+    "Run_20260902_160812",
+    "Run_20260902_160827"
+  ],
+  "anchors_csv": "sim-pilot-anchors.csv",
+  "assignments_csv": "sim-pilot-assignments.csv",
+  "groups_out": "../../evaluations/sim-pilot-groups",
+  "silver_frame_list": "../../observations_sim/silver_frames.csv",
+  "dp": {
+    "params": {
+      "min_boundary_contrast": 5.0,
+      "polarity_refusal_floor": -15.0,
+      "w_above": 0.45
+    }
+  },
+  "tasks": {
+    "reference_observation_ids": [
+      "Run_20260902_154534__sky_000001",
+      "Run_20260902_154646__sky_000001",
+      "Run_20260902_160512__sky_000001",
+      "Run_20260902_155745__sky_000001",
+      "Run_20260902_160113__sky_000001",
+      "Run_20260902_160139__sky_000001"
+    ],
+    "query_sessions": [
+      "Run_20260902_154341",
+      "Run_20260902_154352",
+      "Run_20260902_154420",
+      "Run_20260902_154449",
+      "Run_20260902_154458",
+      "Run_20260902_154510",
+      "Run_20260902_154534",
+      "Run_20260902_154544",
+      "Run_20260902_154611",
+      "Run_20260902_154634",
+      "Run_20260902_154646",
+      "Run_20260902_154710",
+      "Run_20260902_154724",
+      "Run_20260902_154742",
+      "Run_20260902_154750",
+      "Run_20260902_154822",
+      "Run_20260902_155745",
+      "Run_20260902_155814",
+      "Run_20260902_155832",
+      "Run_20260902_155842",
+      "Run_20260902_155856",
+      "Run_20260902_155906",
+      "Run_20260902_160007",
+      "Run_20260902_160023",
+      "Run_20260902_160037",
+      "Run_20260902_160047",
+      "Run_20260902_160104",
+      "Run_20260902_160113",
+      "Run_20260902_160139",
+      "Run_20260902_160155",
+      "Run_20260902_160229",
+      "Run_20260902_160241",
+      "Run_20260902_160250",
+      "Run_20260902_160302",
+      "Run_20260902_160407",
+      "Run_20260902_160419",
+      "Run_20260902_160436",
+      "Run_20260902_160448",
+      "Run_20260902_160503",
+      "Run_20260902_160512",
+      "Run_20260902_160627",
+      "Run_20260902_160636",
+      "Run_20260902_160657",
+      "Run_20260902_160711",
+      "Run_20260902_160735",
+      "Run_20260902_160749",
+      "Run_20260902_160801",
+      "Run_20260902_160812",
+      "Run_20260902_160827"
+    ],
+    "deform_query_sessions": [
+      "Run_20260902_160636",
+      "Run_20260902_160657",
+      "Run_20260902_160711",
+      "Run_20260902_160735",
+      "Run_20260902_160749",
+      "Run_20260902_160812",
+      "Run_20260902_160827"
+    ],
+    "spacings_m": [
+      250.0
+    ],
+    "stage_rule": {
+      "same_pose_m": 0.5,
+      "yaw_eps_deg": 0.5,
+      "attitude_eps_deg": 0.5
+    }
+  },
+  "tasks_dir": "../../evaluations/sim-pilot-tasks/pilot",
+  "deform_tasks_dir": "../../evaluations/sim-pilot-tasks/deform",
+  "task_name": "pilot",
+  "datasets_root": "../../datasets",
+  "refdb_root": "../../skyline_refdb",
+  "runs_root": "../../skyline_runs",
+  "evaluations_root": "../../evaluations",
+  "evaluation_configs_root": "../../evaluation/configs",
+  "sources": {
+    "sim_exact": {
+      "store_root": "../../observations_sim"
+    },
+    "segformer": {
+      "mask_root": "../../silver_masks/silver_sim_segformer_b0",
+      "scale_short_side": 512,
+      "closing_px": 0,
+      "min_valid_frac": 0.5,
+      "expected_model_revision": "489d5cd81a0b59fab9b7ea758d3548ebe99677da"
+    },
+    "dp": {
+      "store_root": "../../observations_sim",
+      "frozen_digest_file": "frozen/poc_robust_dp.digest",
+      "extraction_manifest": "../../observations_sim/dp_extraction_manifest.json"
+    }
+  },
+  "matcher": {
+    "profile": {
+      "n_samples": 256,
+      "normalize_mean": true,
+      "detrend": false,
+      "units": "image_fraction"
+    },
+    "acceptance": {
+      "confidence_k": 5.0,
+      "reject_threshold": 0.5,
+      "viable_sigma": 3.0,
+      "ambiguity_margin_sigma": 1.0,
+      "degenerate_profile_std": 1e-06
+    },
+    "recall_k": 5,
+    "lag_search": false
+  },
+  "baselines": [
+    "ncc"
+  ],
+  "geodetic_origin": {
+    "lat_deg": 0.0,
+    "lon_deg": 0.0,
+    "alt_m": 0.0,
+    "is_synthetic": true
+  },
+  "run_id_pattern": "sim-pilot-s{spacing}-{baseline}-{source}",
+  "preregistration_ref": "frozen/sim-viewpoint.prereg",
+  "experiments": {
+    "extraction_out": "../../evaluations/sim-exp-extraction",
+    "consistency_out": "../../evaluations/sim-exp-consistency",
+    "deformation_out": "../../evaluations/sim-exp-deformation",
+    "variant_out": "../../evaluations/sim-exp-variant",
+    "catastrophic_frac_height": 0.05,
+    "classification_json": "../../evaluations/sim-runs-inventory/classification.json",
+    "diagnostic_matchers": {
+      "c1_bounded_lag_ncc": {
+        "max_lag": 64
+      },
+      "c3_shift_scale_ncc": {
+        "max_lag": 64,
+        "max_scale_deviation": 0.2,
+        "n_scale_steps": 41
+      }
+    }
+  },
+  "report_out": "../../evaluations/sim-retrieval-report"
+}

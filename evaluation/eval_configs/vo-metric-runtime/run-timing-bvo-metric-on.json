@@ -1,0 +1,26 @@
+{
+  "dataset_dir": "datasets/bvo-flat-climb",
+  "output_dir": "runs",
+  "estimator_id": "stitching-vo",
+  "is_target_hardware": false,
+  "downsampleFactor": 1,
+  "motion_model": "homography",
+  "navigation_source": "rigid_motion",
+  "logical_transform_sidecar": false,
+  "refineEstimate": false,
+  "run_id": "timing-bvo-flat-climb-metric-on",
+  "estimator_version": "vo-metric-runtime-timing-on",
+  "metric_readout": {
+    "enabled": true,
+    "fx_native_px": 735.0,
+    "h0_agl_m": 80.0,
+    "tau_stale_s": 2.0,
+    "nominal_sample_interval_s": 0.1,
+    "height_csv": "datasets/bvo-flat-climb/terrain.csv",
+    "height_time_column": "timestamp_s",
+    "height_relative_column": "baro_relative_m",
+    "height_semantics": "takeoff_relative",
+    "publish_as_navigation_source": false
+  },
+  "note": "CONTROLLED A/B for DEC-VO-009 runtime cost, arm B: metric readout ON. Identical to the OFF arm in every other field."
+}

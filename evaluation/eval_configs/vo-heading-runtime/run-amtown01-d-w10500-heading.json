@@ -1,0 +1,42 @@
+{
+  "dataset_dir": "datasets/amtown01-d-w10500",
+  "output_dir": "runs",
+  "run_id": "amtown01-d-w10500-homography-heading-v1",
+  "estimator_id": "stitching-vo",
+  "estimator_version": "vo-heading-runtime-amtown01-d-w10500",
+  "is_target_hardware": false,
+  "downsampleFactor": 2,
+  "motion_model": "homography",
+  "navigation_source": "rigid_motion",
+  "logical_transform_sidecar": true,
+  "refineEstimate": false,
+  "metric_readout": {
+    "enabled": true,
+    "fx_native_px": 1469.4898681640625,
+    "h0_agl_m": 80.0,
+    "tau_stale_s": 2.0,
+    "nominal_sample_interval_s": 0.2,
+    "height_csv": "evaluation/tools/vo_heading_runtime/inputs/amtown01-d-w10500-height-rtk-relative.csv",
+    "height_time_column": "timestamp_s",
+    "height_relative_column": "baro_relative_m",
+    "height_semantics": "takeoff_relative",
+    "publish_as_navigation_source": false
+  },
+  "h0_provenance": "the sequence's DECLARED survey altitude (dataset.json metadata.nominal_altitude_m = 80.0 m), a mission parameter -- not fitted, and not taken from the trajectory ground truth this run is scored against (DEC-VO-007 D2).",
+  "height_provenance": "MARS-LVIG has no usable barometric channel (/dji_osdk_ros/height_above_takeoff is populated but reads +/-1e-6 m for the whole flight, EXP-VO-013 B1). The height series replayed here is an RTK-derived takeoff-relative altitude STAND-IN built by evaluation/tools/vo_heading_runtime/make_replay_inputs.py -- noise-, drift-, bias-, quantisation- and latency-free, so NO claim about a real barometer may be derived from this run. It spans 0.2 m over the flight, i.e. it deliberately holds the SCALE channel still while the DIRECTION channel is the thing under test. On amtown01-d the true height above the IMAGED SURFACE spans 41.2-88.2 m (terrain, LIT-VO-004 s4); the flat-terrain assumption is violated there and the absolute metric accuracy of that run is correspondingly limited. That is a scale limitation and is orthogonal to what this configuration measures.",
+  "heading_readout": {
+    "enabled": true,
+    "heading_semantics": "fc_ahrs_body_compass",
+    "delta_mount_deg": 90.7,
+    "delta_mount_provenance": "delta_mount_deg is a ONE-TIME PLATFORM CALIBRATION, not a per-flight fit and not a runtime quantity. MARS-LVIG publishes no camera-to-body extrinsic (LIT-006 open question 3 says the numeric value is in vendor CAD/calibration files that are not in this repository), so it was derived offline once per flight by the DEC-VO-010 audit: the circular mean, over straight legs (|turn| < 2 deg across a 5 s chord, >= 15 m of RTK motion, >= 50 px of VO motion), of (bearing_of_travel_from_RTK - bearing_of_the_VO_increment_in_the_current_camera_frame - FC_compass). 5 s and 10 s chords agree to 0.15 deg within a flight. The two flights give 89.5 and 90.7 deg and are NOT averaged into a universal constant -- each config declares its own sequence's value. Evidence: T3-derived, offline, against RTK ground truth; NOT a published vendor calibration. It does not transfer to any other airframe/camera pair.",
+    "tau_stale_s": 2.0,
+    "nominal_sample_interval_s": 0.01,
+    "max_rate_deg_per_s": 180.0,
+    "heading_csv": "evaluation/tools/vo_heading_runtime/inputs/amtown01-d-w10500-heading-fc.csv",
+    "heading_time_column": "timestamp_s",
+    "heading_column": "yaw_compass_deg",
+    "heading_latency_s": 0.0,
+    "heading_decimation": 1
+  },
+  "note": "DEC-VO-010 real-data runtime verification through a real hard visual loss. A 1394-frame WINDOW of amtown01-d (frames 10500-11893, imagery referenced in place) chosen because it contains BOTH of that sequence's real hard-loss events; the full 11894-frame cruise could not be replayed on the machine this was run on. It is NOT comparable to amtown01-d's committed run record -- the estimator starts at a different frame, so its keyframe and canvas schedules and all accumulated state differ, and its restart events need not fall in the same places. What it verifies is the RUNTIME PLUMBING on real imagery and a real 100 Hz flight-controller heading stream: sample age and freshness, the rate gate, the visual-vs-external disagreement, and the hard-loss contract. No trajectory-accuracy number from it characterises the algorithm or the flight."
+}

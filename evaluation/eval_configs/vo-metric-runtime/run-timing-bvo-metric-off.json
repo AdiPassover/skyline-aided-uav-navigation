@@ -1,0 +1,14 @@
+{
+  "dataset_dir": "datasets/bvo-flat-climb",
+  "output_dir": "runs",
+  "estimator_id": "stitching-vo",
+  "is_target_hardware": false,
+  "downsampleFactor": 1,
+  "motion_model": "homography",
+  "navigation_source": "rigid_motion",
+  "logical_transform_sidecar": false,
+  "refineEstimate": false,
+  "run_id": "timing-bvo-flat-climb-metric-off",
+  "estimator_version": "vo-metric-runtime-timing-off",
+  "note": "CONTROLLED A/B for DEC-VO-009 runtime cost, arm A: metric readout OFF. Run back to back with the ON arm on an otherwise idle machine; the only difference between the two configs is the metric_readout block. Not a research run -- no result depends on it."
+}

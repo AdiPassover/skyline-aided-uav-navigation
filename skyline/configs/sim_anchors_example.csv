@@ -1,0 +1,5 @@
+anchor_id,east_m,north_m,up_m,heading_deg,radius_m,notes
+ridge_a,0,0,60,0,3,anchor: reference viewpoint on the ridge
+ridge_a_e5,5,0,60,0,3,E1/E3 lateral +5 m (East of a North-facing camera)
+ridge_a_e25,25,0,60,0,3,E3 lateral +25 m
+ridge_a_n25,0,25,60,0,3,E3 longitudinal +25 m

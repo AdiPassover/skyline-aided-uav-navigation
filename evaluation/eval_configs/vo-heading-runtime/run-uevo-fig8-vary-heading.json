@@ -1,0 +1,38 @@
+{
+  "dataset_dir": "datasets/uevo-fig8-vary-v1",
+  "output_dir": "runs",
+  "run_id": "uevo-fig8-vary-homography-heading-v1",
+  "estimator_id": "stitching-vo",
+  "estimator_version": "vo-heading-runtime-uevo-fig8-vary",
+  "is_target_hardware": false,
+  "downsampleFactor": 1,
+  "motion_model": "homography",
+  "navigation_source": "rigid_motion",
+  "logical_transform_sidecar": true,
+  "refineEstimate": false,
+  "metric_readout": {
+    "enabled": true,
+    "fx_native_px": 512.0,
+    "h0_agl_m": 43.818340019,
+    "tau_stale_s": 2.0,
+    "nominal_sample_interval_s": 0.1,
+    "height_csv": "datasets/uevo-fig8-vary-v1/terrain.csv",
+    "height_time_column": "timestamp_s",
+    "height_relative_column": "baro_relative_m",
+    "height_semantics": "takeoff_relative",
+    "publish_as_navigation_source": false
+  },
+  "heading_readout": {
+    "enabled": true,
+    "heading_semantics": "sim_nadir_camera_heading",
+    "tau_stale_s": 2.0,
+    "nominal_sample_interval_s": 0.0166666667,
+    "max_rate_deg_per_s": 180.0,
+    "heading_csv": "datasets/uevo-fig8-vary-v1/groundtruth.csv",
+    "heading_time_column": "timestamp_s",
+    "heading_column": "heading_deg",
+    "heading_latency_s": 0.0,
+    "heading_decimation": 1
+  },
+  "note": "DEC-VO-010 simulator verification on EXP-VO-014's varying-height figure-8. The authoritative heading is the NADIR CAMERA's (groundtruth.csv heading_deg), used directly with NO mounting correction -- the UE nadir camera is world_stabilized_nadir_independent_yaw, so body yaw in ue_body.csv sweeps a full 360 deg with sd 103.6 deg while the camera holds North, and the ingest's own C6 check records camera_body_yaw_is_fixed_offset = false. Substituting body yaw here would be wrong by up to 180 deg and no offset could repair it. LIMITATION: this dataset's camera heading has exactly ONE distinct value (359.999817 deg across all 17412 rows), so the run validates the wiring, the semantics and the regression, and does NOT validate varying-heading behaviour. Varying-nadir-heading validation needs a new capture; the synthetic known-answer tests cover the varying case meanwhile."
+}

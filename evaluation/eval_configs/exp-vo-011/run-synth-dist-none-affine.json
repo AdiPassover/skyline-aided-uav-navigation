@@ -1,0 +1,12 @@
+{
+  "dataset_dir": "datasets/synth-dist-none",
+  "output_dir": "runs",
+  "run_id": "synth-dist-none-affine-v1",
+  "estimator_id": "stitching-vo",
+  "estimator_version": "exp-vo-011",
+  "is_target_hardware": false,
+  "downsampleFactor": 1,
+  "motion_model": "affine",
+  "navigation_source": "rigid_motion",
+  "logical_transform_sidecar": true
+}

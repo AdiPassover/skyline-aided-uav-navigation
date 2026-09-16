@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "dataset_id": "skyquery-mock-001",
+  "dataset_revision": "2026-09-01a",
+  "source_type": "synthetic",
+  "evidence_tier": "T1",
+  "evidence_caveat": "Hand-authored mock query set for evaluator unit tests; not real skyline evidence.",
+  "frame_clock": "query_monotonic",
+  "gt_clock": "query_monotonic",
+  "clock_offset_s": 0.0,
+  "clock_offset_source": "same clock",
+  "clock_drift_s_per_s": 0.0,
+  "frame_convention": "ENU",
+  "heading_convention": "compass_cw_from_north",
+  "local_frame_origin": { "lat_deg": 0.0, "lon_deg": 0.0, "alt_m": 0.0 },
+  "position_quality": { "class": "simulator_exact", "nominal_accuracy": 0.0, "accuracy_source": "synthetic" },
+  "heading_quality": { "class": "simulator_exact", "nominal_accuracy": 0.0, "accuracy_source": "synthetic" },
+  "height_quality": null,
+  "metadata": { "environment": "mock", "notes": "10 hand-authored queries exercising every outcome" },
+  "skyline": {
+    "camera": { "fov_deg": 90.0, "calibration_id": "mock-cam", "orientation": "horizon-viewing" },
+    "compass_prior": { "mode": "synthesized", "noise_model": "hand-authored", "seed": 0 },
+    "condition_factors": ["roll", "coverage"]
+  }
+}

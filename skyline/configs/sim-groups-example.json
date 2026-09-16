@@ -1,0 +1,17 @@
+{
+  "_comment": [
+    "EXAMPLE experiment-group sidecar config (Part D). Identity is DECLARED by a human in",
+    "anchors.csv / assignments.csv; all geometry (displacement from the anchor, its lateral and",
+    "longitudinal components, altitude, attitude, the bin, the same-pose group) is DERIVED from",
+    "poses. Group membership is never taken from filename order or frame index.",
+    "anchors.csv columns:     anchor_id,east_m,north_m,up_m,heading_deg,radius_m,notes",
+    "assignments.csv columns: observation_id,anchor_id,role,condition_group,notes   (role is one of",
+    "reference|query|both|excluded; an explicit assignment wins over proximity to an anchor)."
+  ],
+  "store_root": "../observations_sim",
+  "sessions": null,
+  "anchors_csv": "sim_anchors_example.csv",
+  "assignments_csv": null,
+  "translation_bins_m": [0.0, 1.0, 7.5, 17.5, 37.5, 75.0, 150.0],
+  "out_dir": "../evaluations/sim-experiment-index"
+}

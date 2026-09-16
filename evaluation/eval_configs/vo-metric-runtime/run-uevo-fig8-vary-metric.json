@@ -1,0 +1,26 @@
+{
+  "dataset_dir": "datasets/uevo-fig8-vary-v1",
+  "output_dir": "runs",
+  "run_id": "uevo-fig8-vary-homography-metric-v1",
+  "estimator_id": "stitching-vo",
+  "estimator_version": "vo-metric-runtime-uevo-fig8-vary",
+  "is_target_hardware": false,
+  "downsampleFactor": 1,
+  "motion_model": "homography",
+  "navigation_source": "rigid_motion",
+  "logical_transform_sidecar": true,
+  "refineEstimate": false,
+  "metric_readout": {
+    "enabled": true,
+    "fx_native_px": 512.0,
+    "h0_agl_m": 43.818340019,
+    "tau_stale_s": 2.0,
+    "nominal_sample_interval_s": 0.1,
+    "height_csv": "datasets/uevo-fig8-vary-v1/terrain.csv",
+    "height_time_column": "timestamp_s",
+    "height_relative_column": "baro_relative_m",
+    "height_semantics": "takeoff_relative",
+    "publish_as_navigation_source": false
+  },
+  "note": "END-TO-END runtime metric demonstration on EXP-VO-014's varying-height figure-8. publish_as_navigation_source is FALSE, so est_x/est_y in frames.csv stay in first-frame pixels and must reproduce runs/uevo-fig8-vary-homography-rigid-v1 exactly -- that reproduction is the evidence the metric layer changes nothing upstream. The metric pose is in metric_track.csv. h0_agl_m and fx_native_px are the dataset's own declared values (metadata.h0_agl_m, camera_intrinsics.fx); neither is fitted."
+}

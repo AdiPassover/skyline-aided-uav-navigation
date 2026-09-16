@@ -1,0 +1,21 @@
+{
+  "_comment": [
+    "SegFormer inference config for the EXP-SKY-012 hard-city dual run (Run_20260907_125137, North + West).",
+    "Run with the ISOLATED SegFormer venv only (see README.md); the script imports no hsreloc module.",
+    "frame_list is written by scripts/sky_dual_hardcity.py --stage ingest from the new store.",
+    "Model, preprocessing, sky class and conversion are the FROZEN EXP-SKY-005 ones (same pinned revision as",
+    "EXP-SKY-011); out_root is SEPARATE from the EXP-SKY-011 root so that root's manifest and digest are never rewritten."
+  ],
+  "mode": "sessions",
+  "frame_list": "../../observations_sim_dual_hardcity/silver_frames_dual.csv",
+  "sessions": null,
+  "out_root": "../../silver_masks/silver_sim_dual_hardcity_segformer_b0",
+  "scales_short_side": [
+    512
+  ],
+  "model": {
+    "repo_id": "nvidia/segformer-b0-finetuned-ade-512-512",
+    "revision": "489d5cd81a0b59fab9b7ea758d3548ebe99677da"
+  },
+  "torch_threads": 4
+}

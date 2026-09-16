@@ -1,0 +1,39 @@
+{
+  "_comment": [
+    "EXAMPLE simulator ingest config (PROT-SKY-001 §1-§2). No simulator data exists in this",
+    "repository yet: the paths below are placeholders for a real run directory and are not read by",
+    "any test. Copy it, point run_dir at the delivered run, and start with the 'validate' command,",
+    "which writes nothing and prints every check.",
+    "The conventions block is REQUIRED to be looked at rather than inherited: altitude_datum_ue_cm",
+    "is the UE world Z of the ground plane at the trajectory origin (PROT-001 §2.4), and",
+    "verified_by must name the R0-S convention-check recording (PROT-SKY-001 §4) once one exists.",
+    "Leaving it null is legal and is recorded as 'declared but not verified' in session.json."
+  ],
+  "run_dir": "<path to>/Run_20260831_172540",
+  "store_root": "../observations_sim",
+  "session_id": "hills_line_north_day_clear",
+  "conventions": {
+    "ue_world_axes": "x_north_y_east",
+    "altitude_datum_ue_cm": 0.0,
+    "altitude_datum": "ue_world_z_zero",
+    "pitch_sign": "positive_up",
+    "roll_sign": "positive_clockwise_image",
+    "attitude_order": "ZYX",
+    "quaternion_convention": null,
+    "verified_by": null
+  },
+  "options": {
+    "image_mode": "copy",
+    "preserve_nadir": true,
+    "gt_min_valid_frac": 1.0,
+    "mask_binarity_tolerance": 0.001,
+    "heading_lock_tolerance_deg": 0.5,
+    "quaternion_norm_tolerance": 0.001,
+    "quaternion_angle_tolerance_deg": 0.5,
+    "calibration_tolerance_px": 1.0,
+    "calibration_tolerance_rel": 0.01
+  },
+  "sessions": ["hills_line_north_day_clear"],
+  "silver_frame_list": "../observations_sim/silver_frames.csv",
+  "dp": {"params": {}}
+}

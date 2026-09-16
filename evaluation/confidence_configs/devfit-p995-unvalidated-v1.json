@@ -1,0 +1,86 @@
+{
+  "schema_version": "2.0.0",
+  "calibration_id": "devfit-p995-unvalidated-v1",
+  "validated": false,
+  "validated_by": null,
+  "probability_semantics": false,
+  "notes": "UNVALIDATED development fit (EXP-CONF-001 P4, 2026-08-30). Six-signal logistic selected by the frozen fitting-target rule: T-D member p99.5 over T-A (threshold 0.7631816886199995 deg, 68 independent calibration-pool episodes >= the 10*k=60 floor). Coefficients are the NEGATED plain-MLE degradation-logit coefficients (IRLS, calibration pool = hkairport01-b + amtown01-d, n=17262, n_pos=79), so the runtime score s(z)=0.5+0.5*z/(1+|z|) is high when healthy; the canonical model quantity is the linear predictor z (DEC-CONF-002 A5) and the score is ORDINAL - never a probability (probability gate unmet and not claimed). usable_score_bound 0.5 is s(0), the MLE's own 50% decision boundary - not a tuned threshold. Rejection rules carried unchanged from bootstrap-unvalidated-v2 (residual rule documented-cannot-fire at the shipped configuration, EXP-VO-001 R1). Validation on the held-out sequences is P5, author-gated; transfer outside the configuration_binding is unvalidated by definition.",
+  "required_signals": [
+    "track_count",
+    "inlier_count",
+    "inlier_ratio",
+    "residual_mean_sq_px",
+    "relative_support",
+    "inlier_coverage",
+    "inc_flow_px",
+    "inc_log_scale_dispersion"
+  ],
+  "configuration_binding": {
+    "image_width": 1224,
+    "image_height": 1024,
+    "downsampleFactor": 2,
+    "motion_model": "homography",
+    "inlierThresholdSq": 3.0,
+    "absoluteMinimumTracks": 30,
+    "respawnTrackFraction": 0.6,
+    "respawnCoverageFraction": 0.5,
+    "refineEstimate": false,
+    "kltPyramidLevels": 4,
+    "kltFeatureRadius": 3
+  },
+  "temporal": {
+    "window_w": 10,
+    "warmup_m": 5
+  },
+  "rejection_rules": [
+    {
+      "signal": "track_count",
+      "op": "lt",
+      "threshold": 30.0,
+      "reason": "insufficient_features"
+    },
+    {
+      "signal": "inlier_ratio",
+      "op": "lt",
+      "threshold": 0.3,
+      "reason": "poor_inlier_support"
+    },
+    {
+      "signal": "residual_mean_sq_px",
+      "op": "gt",
+      "threshold": 3.0,
+      "reason": "high_reprojection_error"
+    }
+  ],
+  "score_model": {
+    "type": "logistic",
+    "intercept": 1.7787355259803528,
+    "coefficients": [
+      {
+        "signal": "inlier_count",
+        "coefficient": -0.002496403743413373
+      },
+      {
+        "signal": "relative_support",
+        "coefficient": -0.045893123998594756
+      },
+      {
+        "signal": "inlier_ratio",
+        "coefficient": 2.6391895130743643
+      },
+      {
+        "signal": "inlier_coverage",
+        "coefficient": 10.08605704795552
+      },
+      {
+        "signal": "inc_flow_px",
+        "coefficient": -0.1502746668899304
+      },
+      {
+        "signal": "inc_log_scale_dispersion",
+        "coefficient": -48.43436935165176
+      }
+    ]
+  },
+  "usable_score_bound": 0.5
+}

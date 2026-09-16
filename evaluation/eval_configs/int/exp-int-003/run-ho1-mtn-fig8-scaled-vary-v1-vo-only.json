@@ -1,0 +1,38 @@
+{
+  "dataset_dir": "datasets/ho1-mtn-fig8-scaled-vary-v1",
+  "output_dir": "runs",
+  "run_id": "exp-int-003-ho1-mtn-fig8-scaled-vary-v1-vo-only",
+  "estimator_id": "stitching-vo",
+  "estimator_version": "exp-int-003",
+  "is_target_hardware": false,
+  "downsampleFactor": 1,
+  "motion_model": "homography",
+  "navigation_source": "rigid_motion",
+  "refineEstimate": false,
+  "alignment_sidecar": true,
+  "metric_readout": {
+    "enabled": true,
+    "fx_native_px": 512.0,
+    "h0_agl_m": 66.559402026,
+    "tau_stale_s": 2.0,
+    "nominal_sample_interval_s": 0.1,
+    "height_csv": "datasets/ho1-mtn-fig8-scaled-vary-v1/terrain.csv",
+    "height_time_column": "timestamp_s",
+    "height_relative_column": "baro_relative_m",
+    "height_semantics": "takeoff_relative",
+    "publish_as_navigation_source": false
+  },
+  "heading_readout": {
+    "enabled": true,
+    "heading_semantics": "sim_nadir_camera_heading",
+    "tau_stale_s": 2.0,
+    "nominal_sample_interval_s": 0.0166666667,
+    "max_rate_deg_per_s": 180.0,
+    "heading_csv": "datasets/ho1-mtn-fig8-scaled-vary-v1/groundtruth.csv",
+    "heading_time_column": "timestamp_s",
+    "heading_column": "heading_deg",
+    "heading_latency_s": 0.0,
+    "heading_decimation": 1
+  },
+  "note": "EXP-INT-003 HELD-OUT VO_ONLY arm on ho1-mtn-fig8-scaled-vary-v1 (UE5 held_out1/Run_20260908_131337, level mountains_less_steep, path PathB_VaryingHeights_scaled): the frozen stitching VO with the metric readout (h0_agl_m from the recording's settings.json, fx 512 px native) and the authoritative nadir-camera heading, relocalization OFF. Identical in every field to the EXP-INT-001/002 VO_ONLY configs except the dataset paths, h0_agl_m and ids. alignment_sidecar writes the persistent position under the identity alignment, i.e. the VO's own metric track - the baseline the INT arm is compared against on identical frames."
+}

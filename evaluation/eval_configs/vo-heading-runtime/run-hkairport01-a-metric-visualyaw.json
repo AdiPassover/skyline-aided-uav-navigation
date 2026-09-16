@@ -1,0 +1,28 @@
+{
+  "dataset_dir": "datasets/hkairport01-a",
+  "output_dir": "runs",
+  "run_id": "hkairport01-a-homography-metric-visualyaw-v1",
+  "estimator_id": "stitching-vo",
+  "estimator_version": "vo-heading-runtime-hkairport01-a",
+  "is_target_hardware": false,
+  "downsampleFactor": 2,
+  "motion_model": "homography",
+  "navigation_source": "rigid_motion",
+  "logical_transform_sidecar": true,
+  "refineEstimate": false,
+  "metric_readout": {
+    "enabled": true,
+    "fx_native_px": 1471.0653076171875,
+    "h0_agl_m": 80.0,
+    "tau_stale_s": 2.0,
+    "nominal_sample_interval_s": 0.2,
+    "height_csv": "evaluation/tools/vo_heading_runtime/inputs/hkairport01-a-height-rtk-relative.csv",
+    "height_time_column": "timestamp_s",
+    "height_relative_column": "baro_relative_m",
+    "height_semantics": "takeoff_relative",
+    "publish_as_navigation_source": false
+  },
+  "h0_provenance": "the sequence's DECLARED survey altitude (dataset.json metadata.nominal_altitude_m = 80.0 m), a mission parameter -- not fitted, and not taken from the trajectory ground truth this run is scored against (DEC-VO-007 D2).",
+  "height_provenance": "MARS-LVIG has no usable barometric channel (/dji_osdk_ros/height_above_takeoff is populated but reads +/-1e-6 m for the whole flight, EXP-VO-013 B1). The height series replayed here is an RTK-derived takeoff-relative altitude STAND-IN built by evaluation/tools/vo_heading_runtime/make_replay_inputs.py -- noise-, drift-, bias-, quantisation- and latency-free, so NO claim about a real barometer may be derived from this run. It spans 0.2 m over the flight, i.e. it deliberately holds the SCALE channel still while the DIRECTION channel is the thing under test. On amtown01-d the true height above the IMAGED SURFACE spans 41.2-88.2 m (terrain, LIT-VO-004 s4); the flat-terrain assumption is violated there and the absolute metric accuracy of that run is correspondingly limited. That is a scale limitation and is orthogonal to what this configuration measures.",
+  "note": "CONTROL for run-hkairport01-a-heading.json: identical in every respect except that it has NO heading_readout block, so the metric pose is rotated by the visually integrated yaw exactly as DEC-VO-009 shipped it. The pair isolates the heading substitution from everything else. NOT EXECUTED in the DEC-VO-010 pass: datasets/hkairport01-a/images was not available where the heading channel was verified, so the executed real-data verification is the AMtown01 pair instead -- which is the better sequence for it anyway, carrying BOTH real hard-loss events. This config is committed because 89.5 deg is HKairport01's own mounting calibration and belongs with it; run it wherever that imagery is present."
+}

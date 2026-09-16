@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "skyline-mock-run-001",
+  "query_set_id": "skyquery-mock-001",
+  "query_set_revision": "2026-09-01a",
+  "relocalizer_id": "mock-relocalizer",
+  "relocalizer_version": "mock",
+  "relocalizer_config": { "note": "hand-authored; no relocalizer exists" },
+  "reference_db": {
+    "dem_id": "mock-dem",
+    "dem_version": "0",
+    "crs": "EPSG:4979",
+    "coverage_bounds": { "min_lat": 0, "min_lon": 0, "max_lat": 0.01, "max_lon": 0.01 },
+    "covered_area_km2": 1.0,
+    "sample_spacing_m": 20.0,
+    "camera_height_m": 2.0,
+    "generation_config_id": "mock-gen",
+    "n_references": 100,
+    "total_bytes": 51200
+  },
+  "compass_prior": { "source": "synthesized", "noise_model": "hand-authored", "seed": 0 },
+  "environment": { "hostname": "dev", "os": "test", "cpu_model": "test-cpu", "peak_rss_mb": 128, "is_target_hardware": false },
+  "run_timestamp": "2026-09-01T10:15:00Z",
+  "query_count": 10,
+  "processed_count": 10,
+  "completed": true
+}

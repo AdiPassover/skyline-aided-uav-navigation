@@ -1,0 +1,11 @@
+frame_index,timestamp_s,image_path
+0,0.0,images/q0.png
+1,1.0,images/q1.png
+2,2.0,images/q2.png
+3,3.0,images/q3.png
+4,4.0,images/q4.png
+5,5.0,images/q5.png
+6,6.0,images/q6.png
+7,7.0,images/q7.png
+8,8.0,images/q8.png
+9,9.0,images/q9.png

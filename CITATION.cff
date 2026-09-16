@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using these metadata."
+type: software
+title: "Skyline-Aided UAV Navigation"
+abstract: >-
+  Research implementation accompanying the master's thesis "Stitching Based UAV
+  Optical Navigation With Skyline-based Localization": stitching-based visual
+  odometry with metric scale and heading from external channels, skyline-profile
+  place recognition, conservative translation-only relocalization, and the
+  evaluation tooling used in the thesis.
+authors:
+  - given-names: Adi
+    family-names: Passover
+repository-code: "https://github.com/AdiPassover/skyline-aided-uav-navigation"
+keywords:
+  - UAV navigation
+  - visual odometry
+  - skyline
+  - relocalization
+  - GNSS-denied navigation

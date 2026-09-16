@@ -1,0 +1,12 @@
+* text=auto
+
+# Scripts keep the line endings their interpreters expect.
+gradlew text eol=lf
+*.sh text eol=lf
+*.bat text eol=crlf
+*.jar binary
+
+# The frozen relocalization policy is identified by the SHA-256 of its bytes as checked out with
+# CRLF line endings (b5457092...), which int_comparison_arms.py verifies. Pin the checkout form so
+# the recorded hash holds on every platform.
+evaluation/eval_configs/int/exp-int-002/reloc-c0-primary-retry20.json text eol=crlf

@@ -1,0 +1,13 @@
+{
+  "dataset_dir": "datasets/synth-scale-combo",
+  "output_dir": "runs",
+  "run_id": "synth-scale-combo-affine-v1",
+  "estimator_id": "stitching-vo",
+  "estimator_version": "exp-vo-005",
+  "is_target_hardware": false,
+  "downsampleFactor": 1,
+  "motion_model": "affine",
+  "minDistanceFromBorder": 10,
+  "navigation_source": "logical_frame",
+  "logical_transform_sidecar": true
+}

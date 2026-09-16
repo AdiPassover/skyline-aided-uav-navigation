@@ -1,0 +1,11 @@
+timestamp_s,east_m,north_m,up_m,heading_deg,fix_quality,valid
+0.0,100,200,,90,exact,true
+1.0,300,400,,270,exact,true
+2.0,0,0,,0,exact,true
+3.0,50,60,,45,exact,true
+4.0,700,800,,180,exact,true
+5.0,9000,9000,,0,exact,true
+6.0,120,130,,300,exact,true
+7.0,200,210,,120,exact,true
+8.0,400,410,,60,exact,true
+9.0,5000,5000,,0,exact,true

@@ -1,0 +1,47 @@
+{
+  "schema_version" : "1.1.0",
+  "run_id" : "run_bootstrap",
+  "dataset_id" : "confidence-agreement-fixture",
+  "dataset_revision" : "v1",
+  "estimator_id" : "scripted-signals",
+  "estimator_version" : "fixture",
+  "estimator_config" : {
+    "inlierThresholdSq" : 3.0,
+    "absoluteMinimumTracks" : 30,
+    "respawnTrackFraction" : 0.6,
+    "respawnCoverageFraction" : 0.5,
+    "refineEstimate" : false,
+    "kltPyramidLevels" : 4,
+    "kltFeatureRadius" : 3,
+    "downsampleFactor" : 2,
+    "motion_model" : "homography"
+  },
+  "evaluator_capture_version" : "fixture",
+  "environment" : {
+    "hostname" : "fixture",
+    "os" : "none",
+    "cpu_model" : "none",
+    "jvm_version" : "none",
+    "heap_max_mb" : 0,
+    "is_target_hardware" : false
+  },
+  "run_timestamp" : "1970-01-01T00:00:00Z",
+  "frame_count" : 16,
+  "processed_count" : 16,
+  "completed" : true,
+  "confidence" : {
+    "calibration_id" : "bootstrap-unvalidated-v2",
+    "calibration_digest" : "sha256:e57a086e0e5ef2ee9f40c306c19672e96fd7c1437bdf1f49d63f921fd948c1d3",
+    "calibration_validated" : false,
+    "probability_semantics" : false,
+    "residual_diagnostics_available" : true,
+    "residual_source" : "scripted (fixture; real interface types, scripted values)",
+    "signal_window_w" : 10,
+    "signal_warmup_m" : 5,
+    "capture_context" : {
+      "image_width" : 1224,
+      "image_height" : 1024,
+      "motion_model" : "homography"
+    }
+  }
+}

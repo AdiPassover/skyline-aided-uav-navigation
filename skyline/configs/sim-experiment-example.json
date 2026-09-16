@@ -1,0 +1,38 @@
+{
+  "_comment": [
+    "EXAMPLE task/set config for one experiment family (Parts D/E). Nothing here has been run.",
+    "task_name labels the family: e0_plumbing | e1_extraction | e2_condition | e3_translation |",
+    "e4_retrieval. Reference spacings and bins are fixed BEFORE rendering (PROT-SKY-001 §3, D3) and",
+    "are not revisited once a retrieval number exists.",
+    "The three sources are written for the SAME grid, so a difference between their results can only",
+    "come from their curves; 'sets' asserts that materialisation identity."
+  ],
+  "task_name": "e3_translation",
+  "store_root": "../observations_sim",
+  "tasks_dir": "../evaluations/sim-tasks-e3",
+  "datasets_root": "../datasets",
+  "refdb_root": "../skyline_refdb",
+  "tasks": {
+    "reference_session": "hills_line_north_day_clear",
+    "query_sessions": ["hills_line_north_lat10_day_clear"],
+    "spacings_m": [50.0, 25.0, 100.0],
+    "translation_bins_m": [0.0, 1.0, 7.5, 17.5, 37.5, 75.0, 150.0],
+    "yaw_bins_deg": [0.0, 0.5, 1.5, 3.5, 7.5, 15.0],
+    "attitude_bins_deg": [0.0, 0.5, 3.5, 7.5, 15.0],
+    "stage_rule": {"same_pose_m": 0.5, "yaw_eps_deg": 0.5, "attitude_eps_deg": 0.5,
+                   "require_attitude": true}
+  },
+  "sources": {
+    "sim_exact": {},
+    "segformer": {
+      "mask_root": "<benchmark_root>/silver_sim_segformer_b0",
+      "scale_short_side": 512,
+      "closing_px": 0,
+      "min_valid_frac": 0.5,
+      "expected_model_revision": "489d5cd8"
+    },
+    "dp": {
+      "frozen_digest_file": "frozen/poc_robust_dp.digest"
+    }
+  }
+}

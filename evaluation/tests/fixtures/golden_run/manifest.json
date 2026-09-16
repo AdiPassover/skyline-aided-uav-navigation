@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "golden-run-001",
+  "dataset_id": "golden-001",
+  "dataset_revision": "v1",
+  "estimator_id": "stitching-vo",
+  "estimator_version": "test-fixture",
+  "estimator_config": {
+    "shrinkScale": 0.5,
+    "minDistanceFromBorder": 10,
+    "detectorType": "SHI_TOMASI",
+    "maxFeatures": 300,
+    "detectorRadius": 3,
+    "detectorThreshold": 1.0,
+    "kltPyramidLevels": 4,
+    "kltFeatureRadius": 3,
+    "ransacIterations": 220,
+    "inlierThresholdSq": 3.0,
+    "outlierPrune": 2,
+    "absoluteMinimumTracks": 30,
+    "respawnTrackFraction": 0.6,
+    "respawnCoverageFraction": 0.5,
+    "refineEstimate": false,
+    "maxJumpFraction": 0.55
+  },
+  "evaluator_capture_version": "test-fixture",
+  "environment": {
+    "hostname": "test-host",
+    "os": "test-os",
+    "cpu_model": "test-cpu",
+    "jvm_version": "19.0.2",
+    "heap_max_mb": 1024,
+    "is_target_hardware": false
+  },
+  "run_timestamp": "2026-08-12T00:00:00Z",
+  "frame_count": 10,
+  "processed_count": 10,
+  "completed": true
+}

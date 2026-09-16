@@ -1,0 +1,82 @@
+{
+  "_comment": [
+    "EXP-SKY-011: dual-direction (North + West) skyline place recognition with the frozen C1-32.",
+    "Reads the 2026-09-06 dual-direction simulator batch (raw_root, locally git-excluded, immutable),",
+    "ingests it view by view into store_root (image_mode reference: frames stay in the run",
+    "directory), and writes only under out_dir. Nothing frozen is touched; the EXP-SKY-008/009/010",
+    "stores and artifacts are read-only inputs (old_index_csv, old_anchors_csv: the site catalogue).",
+    "Region rule, agreement rule, bins, support, radius rule, gate grid and DEV/held-out structure",
+    "are the ones pre-registered in EXP-SKY-011.",
+    "Segmentation: a star-swipe boundary is a position discontinuity larger than teleport_factor x the",
+    "run's own capture_distance_m between consecutive skyline observations, confirmed on the 60 Hz",
+    "vo/groundtruth.csv trace; the run-level path_id is kept as raw provenance only."
+  ],
+  "raw_root": "../../simulator_skyline_data_both_directions",
+  "store_root": "../../observations_sim_dual",
+  "out_dir": "../../evaluations/sky-dual",
+  "old_index_csv": "../../evaluations/sim-ext-index/index.csv",
+  "old_anchors_csv": {
+    "village": "sim-final-anchors-village.csv",
+    "mountains": "sim-final-anchors-mountains.csv",
+    "city": "sim-final-anchors-city.csv"
+  },
+  "levels": {
+    "asaian_village_hills_background": {"key": "village", "split": "dev", "old_level": "asian_village_hills_background"},
+    "mountains": {"key": "mountains", "split": "final", "old_level": "mountains"},
+    "large_flat_city": {"key": "city", "split": "final", "old_level": "large_city_flat"}
+  },
+  "views": ["north", "west"],
+  "conventions": {
+    "ue_world_axes": "x_north_y_east",
+    "altitude_datum_ue_cm": 0.0,
+    "altitude_datum": "ue_world_z_zero",
+    "pitch_sign": "positive_up",
+    "roll_sign": "positive_clockwise_image",
+    "attitude_order": "ZYX",
+    "quaternion_convention": null,
+    "verified_by": null
+  },
+  "ingest_options": {
+    "image_mode": "reference",
+    "preserve_nadir": true,
+    "gt_min_valid_frac": 1.0,
+    "mask_binarity_tolerance": 0.001,
+    "heading_lock_tolerance_deg": 0.5,
+    "quaternion_norm_tolerance": 0.001,
+    "quaternion_angle_tolerance_deg": 0.5,
+    "calibration_tolerance_px": 1.0,
+    "calibration_tolerance_rel": 0.01
+  },
+  "segmentation": {
+    "teleport_factor": 3.0,
+    "center_radius_m": 15.0,
+    "dominance": 0.9,
+    "anchor_match_max_m": 1.0,
+    "site_match_max_m": 10.0
+  },
+  "silver_inference_config": "silver-infer-dual.json",
+  "segformer": {
+    "mask_root": "../silver_masks/silver_sim_dual_segformer_b0",
+    "scale_short_side": 512,
+    "closing_px": 0,
+    "min_valid_frac": 0.5,
+    "expected_model_revision": "489d5cd81a0b59fab9b7ea758d3548ebe99677da"
+  },
+  "sources": ["sim_exact", "segformer"],
+  "profile_n_samples": 256,
+  "max_lag_samples": 32,
+  "min_overlap_frac": 0.6,
+  "recall_k": 5,
+  "acceptance": {"theta_s": 0.9, "theta_m": 0.15},
+  "tau_region_m": 125.0,
+  "tau_agree_m": 125.0,
+  "tau_agree_sensitivity_m": [50.0],
+  "dense_holdout_radii_m": [0.0, 10.0, 20.0, 30.0, 40.0, 60.0, 80.0, 100.0],
+  "bins_m": [0.0, 10.0, 20.0, 30.0, 40.0, 60.0, 80.0, 100.0, 150.0, 200.0],
+  "support": {"min_queries": 30, "min_sites": 3},
+  "radius_rule": {"region_top1_min": 0.90, "accepted_false_region_max": 0.02, "region_recall_k_min": 0.90},
+  "gate_grid": {"theta_s": [0.80, 0.85, 0.90, 0.95], "theta_m": [0.05, 0.10, 0.15, 0.20]},
+  "dev_level": "village",
+  "temporal_k": [2, 3],
+  "frozen_check_every": 25
+}

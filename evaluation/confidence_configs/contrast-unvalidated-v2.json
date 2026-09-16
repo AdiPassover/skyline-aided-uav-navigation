@@ -1,0 +1,66 @@
+{
+  "schema_version": "2.0.0",
+  "calibration_id": "contrast-unvalidated-v2",
+  "validated": false,
+  "validated_by": null,
+  "probability_semantics": false,
+  "notes": "UNVALIDATED, and deliberately DIFFERENT from bootstrap-unvalidated-v2 in model type, signal set, rule order and usable bound. Exists for exactly one purpose: contracts/agreement.md's two-calibrations case (FR-019) -- proving both languages actually read the configuration, because two implementations that both ignored the file would agree with each other under every single-config case. The logistic coefficients are PLACEHOLDERS chosen to be visibly unfitted (round numbers); the intercept and signs merely make the score move in the plausible direction (more relative support = higher score, more flow = lower). Nothing here is a finding. The score is squashed algebraically, not by the logistic sigmoid -- see contracts/calibration-config.md on transcendental-free scoring.",
+
+  "required_signals": [
+    "track_count",
+    "inlier_count",
+    "relative_support",
+    "inc_flow_px"
+  ],
+
+  "configuration_binding": {
+    "image_width": 1224,
+    "image_height": 1024,
+    "downsampleFactor": 2,
+    "motion_model": "homography",
+    "inlierThresholdSq": 3.0,
+    "absoluteMinimumTracks": 30,
+    "respawnTrackFraction": 0.6,
+    "respawnCoverageFraction": 0.5,
+    "refineEstimate": false,
+    "kltPyramidLevels": 4,
+    "kltFeatureRadius": 3
+  },
+
+  "temporal": {
+    "window_w": 10,
+    "warmup_m": 5
+  },
+
+  "rejection_rules": [
+    {
+      "signal": "inlier_count",
+      "op": "lt",
+      "threshold": 30.0,
+      "reason": "poor_inlier_support"
+    },
+    {
+      "signal": "track_count",
+      "op": "lt",
+      "threshold": 30.0,
+      "reason": "insufficient_features"
+    }
+  ],
+
+  "score_model": {
+    "type": "logistic",
+    "intercept": -1.0,
+    "coefficients": [
+      {
+        "signal": "relative_support",
+        "coefficient": 2.0
+      },
+      {
+        "signal": "inc_flow_px",
+        "coefficient": -0.05
+      }
+    ]
+  },
+
+  "usable_score_bound": 0.5
+}

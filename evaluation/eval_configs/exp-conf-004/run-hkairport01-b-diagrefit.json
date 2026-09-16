@@ -1,0 +1,14 @@
+{
+  "dataset_dir": "datasets/hkairport01-b",
+  "output_dir": "runs",
+  "run_id": "hkairport01-b-homography-rigid-diagrefit-v1",
+  "estimator_id": "stitching-vo",
+  "estimator_version": "exp-conf-004-phase-2",
+  "is_target_hardware": false,
+  "downsampleFactor": 2,
+  "motion_model": "homography",
+  "navigation_source": "rigid_motion",
+  "refineEstimate": false,
+  "logical_transform_sidecar": true,
+  "diagnostic_refit_sidecar": true
+}

@@ -1,0 +1,39 @@
+{
+  "dataset_dir": "datasets/interesting-r2-vary-v1",
+  "output_dir": "runs",
+  "run_id": "exp-int-001-interesting-r2-vary-v1-int-c0",
+  "estimator_id": "stitching-vo",
+  "estimator_version": "exp-int-001",
+  "is_target_hardware": false,
+  "downsampleFactor": 1,
+  "motion_model": "homography",
+  "navigation_source": "rigid_motion",
+  "refineEstimate": false,
+  "metric_readout": {
+    "enabled": true,
+    "fx_native_px": 512.0,
+    "h0_agl_m": 22.576193,
+    "tau_stale_s": 2.0,
+    "nominal_sample_interval_s": 0.1,
+    "height_csv": "datasets/interesting-r2-vary-v1/terrain.csv",
+    "height_time_column": "timestamp_s",
+    "height_relative_column": "baro_relative_m",
+    "height_semantics": "takeoff_relative",
+    "publish_as_navigation_source": false
+  },
+  "heading_readout": {
+    "enabled": true,
+    "heading_semantics": "sim_nadir_camera_heading",
+    "tau_stale_s": 2.0,
+    "nominal_sample_interval_s": 0.0166666667,
+    "max_rate_deg_per_s": 180.0,
+    "heading_csv": "datasets/interesting-r2-vary-v1/groundtruth.csv",
+    "heading_time_column": "timestamp_s",
+    "heading_column": "heading_deg",
+    "heading_latency_s": 0.0,
+    "heading_decimation": 1
+  },
+  "note": "EXP-INT-001 PRIMARY C0 arm on interesting-r2-vary-v1: identical to run-interesting-r2-vary-v1-vo-only.json (same frames, metric readout, height channel, authoritative nadir-camera heading, estimator, recenter behaviour, readout) plus the relocalization layer under the frozen policy reloc-c0-primary.json (DEC-INT-007) fed by the exact-identity North+West skyline profiles. The only intended difference from the VO_ONLY arm is that the layer may move the persistent position on an accepted re-anchor.",
+  "relocalization_config": "evaluation/eval_configs/int/exp-int-001/reloc-c0-primary.json",
+  "skyline_profiles": "datasets/interesting-r2-vary-v1/skyline_profiles.csv"
+}

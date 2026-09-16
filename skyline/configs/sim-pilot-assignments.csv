@@ -1,0 +1,7 @@
+observation_id,anchor_id,role,condition_group,notes
+Run_20260902_154534__sky_000001,a0,reference,,DAY+CLEAR reference (R2 rule: first-sorting DAY+CLEAR run folder of the anchor)
+Run_20260902_154646__sky_000001,a1,reference,,DAY+CLEAR reference (R2 rule)
+Run_20260902_160512__sky_000001,a2,reference,,DAY+CLEAR reference (R2 rule; only DAY+CLEAR capture at a2)
+Run_20260902_155745__sky_000001,a3,reference,,DAY+CLEAR reference (R2 rule; only DAY+CLEAR capture at a3)
+Run_20260902_160113__sky_000001,a4,reference,,DAY+CLEAR reference (R2 rule; only DAY+CLEAR capture at a4)
+Run_20260902_160139__sky_000001,a5,reference,,DAY+CLEAR reference (R2 rule; only DAY+CLEAR capture at a5)

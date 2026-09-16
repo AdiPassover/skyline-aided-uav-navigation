@@ -1,0 +1,11 @@
+{
+  "dataset_dir": "datasets/hkairport01-b",
+  "output_dir": "runs",
+  "run_id": "hkairport01-b-run-v1",
+  "estimator_id": "stitching-vo",
+  "estimator_version": "exp002-b",
+  "is_target_hardware": false,
+  "downsampleFactor": 2,
+  "navigation_source": "mosaic_legacy",
+  "navigation_source_note": "EXP-002 Execution B baseline (runs/hkairport01-b-run-v1). Pinned explicitly by DEC-VO-008 when the default moved to rigid_motion."
+}

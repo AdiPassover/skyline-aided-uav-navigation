@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0.0",
+  "dataset_id": "golden-001",
+  "dataset_revision": "v1",
+  "source_type": "synthetic",
+  "evidence_tier": "T1",
+  "evidence_caveat": null,
+  "frame_clock": "test_clock",
+  "gt_clock": "test_clock",
+  "clock_offset_s": 0.0,
+  "clock_offset_source": "same clock",
+  "clock_drift_s_per_s": 0.0,
+  "frame_convention": "ENU",
+  "heading_convention": "compass_cw_from_north",
+  "local_frame_origin": null,
+  "position_quality": {
+    "class": "simulator_exact",
+    "nominal_accuracy": 0.0,
+    "accuracy_source": "exact by construction",
+    "notes": "golden fixture for contract testing"
+  },
+  "heading_quality": {
+    "class": "simulator_exact",
+    "nominal_accuracy": 0.0,
+    "accuracy_source": "exact by construction",
+    "notes": "golden fixture for contract testing"
+  },
+  "height_quality": {
+    "class": "simulator_exact",
+    "nominal_accuracy": 0.0,
+    "accuracy_source": "exact by construction",
+    "notes": "golden fixture for contract testing"
+  },
+  "metadata": {
+    "flight_id": "golden-001",
+    "trajectory_type": "straight",
+    "frame_rate_hz": 10.0,
+    "image_width": 64,
+    "image_height": 64,
+    "environment": "synthetic",
+    "nominal_altitude_m": 40.0,
+    "nominal_speed_ms": 2.0,
+    "capture_date": "2026-08-12",
+    "notes": "hand-authored golden fixture for run-record/dataset contract tests"
+  }
+}

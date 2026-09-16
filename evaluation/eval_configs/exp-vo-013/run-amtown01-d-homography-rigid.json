@@ -1,0 +1,13 @@
+{
+  "dataset_dir": "datasets/amtown01-d",
+  "output_dir": "runs",
+  "run_id": "amtown01-d-homography-rigid-v1",
+  "estimator_id": "stitching-vo",
+  "estimator_version": "expvo013-amtown01-d-homography-rigid",
+  "is_target_hardware": false,
+  "downsampleFactor": 2,
+  "motion_model": "homography",
+  "navigation_source": "rigid_motion",
+  "logical_transform_sidecar": true,
+  "refineEstimate": false
+}

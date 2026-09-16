@@ -1,0 +1,13 @@
+{
+  "dataset_dir": "datasets/uevo-fig8-const-v1",
+  "output_dir": "runs",
+  "run_id": "uevo-fig8-const-homography-rigid-v1",
+  "estimator_id": "stitching-vo",
+  "estimator_version": "expvo014-uevo-fig8-const-homography-rigid",
+  "is_target_hardware": false,
+  "downsampleFactor": 1,
+  "motion_model": "homography",
+  "navigation_source": "rigid_motion",
+  "logical_transform_sidecar": true,
+  "refineEstimate": false
+}

@@ -1,0 +1,14 @@
+{
+  "evaluation_id": "exp-vo-009-hkairport01-a-similarity-rigid",
+  "run_record": "../../runs/hkairport01-a-similarity-rigid-v1",
+  "dataset": "../../datasets/hkairport01-a",
+  "naveval_version": "0.1.0",
+  "segments": {
+    "source": "reference_changes"
+  },
+  "metrics": {
+    "rpe": {
+      "sub_trajectory_lengths_m": [10, 25, 50, 100, 200, 400]
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "dataset_dir": "datasets/hkairport01-a",
+  "output_dir": "runs",
+  "run_id": "hkairport01-a-affine-rigid-refine-v1",
+  "estimator_id": "stitching-vo",
+  "estimator_version": "exp-vo-010",
+  "is_target_hardware": false,
+  "downsampleFactor": 2,
+  "motion_model": "affine",
+  "navigation_source": "rigid_motion",
+  "refineEstimate": true,
+  "logical_transform_sidecar": true,
+  "refinement_sidecar": true
+}

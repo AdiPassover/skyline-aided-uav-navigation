@@ -1,0 +1,81 @@
+{
+  "schema_version": "2.0.0",
+  "calibration_id": "bootstrap-unvalidated-v2",
+  "validated": false,
+  "validated_by": null,
+  "probability_semantics": false,
+  "notes": "UNVALIDATED. Every threshold and weight below is illustrative plumbing, not a finding (see bootstrap-unvalidated-v1 in git history for the schema-1.0.0 predecessor). track_count<30 restates the estimator's own absoluteMinimumTracks; inlier_ratio<0.30 is an arbitrary round number; residual_mean_sq_px>3.0 is the CONFIGURED RANSAC inlier threshold and EXP-VO-001 R1 shows it CANNOT FIRE at the shipped configuration (refineEstimate=false truncates every residual below it) -- the rule is retained to exercise the machinery and as the documented-undetected marker for the high-reprojection-error state; the weights are round numbers summing to 1. The score is an ORDINAL index; probability_semantics is false and stays false until EXP-CONF-001's A1 dual gate passes. The configuration_binding names the MARS-LVIG development capture context (2448x2048 imagery at 2x downsample, shipped estimator parameters); scoring anything else is refused, per amendment A3.",
+
+  "required_signals": [
+    "track_count",
+    "inlier_count",
+    "inlier_ratio",
+    "residual_mean_sq_px"
+  ],
+
+  "configuration_binding": {
+    "image_width": 1224,
+    "image_height": 1024,
+    "downsampleFactor": 2,
+    "motion_model": "homography",
+    "inlierThresholdSq": 3.0,
+    "absoluteMinimumTracks": 30,
+    "respawnTrackFraction": 0.6,
+    "respawnCoverageFraction": 0.5,
+    "refineEstimate": false,
+    "kltPyramidLevels": 4,
+    "kltFeatureRadius": 3
+  },
+
+  "temporal": {
+    "window_w": 10,
+    "warmup_m": 5
+  },
+
+  "rejection_rules": [
+    {
+      "signal": "track_count",
+      "op": "lt",
+      "threshold": 30.0,
+      "reason": "insufficient_features"
+    },
+    {
+      "signal": "inlier_ratio",
+      "op": "lt",
+      "threshold": 0.3,
+      "reason": "poor_inlier_support"
+    },
+    {
+      "signal": "residual_mean_sq_px",
+      "op": "gt",
+      "threshold": 3.0,
+      "reason": "high_reprojection_error"
+    }
+  ],
+
+  "score_model": {
+    "type": "weighted_sum",
+    "terms": [
+      {
+        "signal": "inlier_ratio",
+        "normalise": "identity",
+        "reference": null,
+        "weight": 0.5
+      },
+      {
+        "signal": "track_count",
+        "normalise": "saturating",
+        "reference": 200.0,
+        "weight": 0.25
+      },
+      {
+        "signal": "residual_mean_sq_px",
+        "normalise": "inverse_saturating",
+        "reference": 3.0,
+        "weight": 0.25
+      }
+    ]
+  },
+
+  "usable_score_bound": 0.6
+}

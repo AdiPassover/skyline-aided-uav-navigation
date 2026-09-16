@@ -1,0 +1,12 @@
+{
+  "dataset_dir": "datasets/amtown01-c",
+  "output_dir": "runs",
+  "run_id": "amtown01-c-homography-legacy-v1",
+  "estimator_id": "stitching-vo",
+  "estimator_version": "exp-vo-007",
+  "is_target_hardware": false,
+  "downsampleFactor": 2,
+  "motion_model": "homography",
+  "navigation_source": "mosaic_legacy",
+  "logical_transform_sidecar": true
+}

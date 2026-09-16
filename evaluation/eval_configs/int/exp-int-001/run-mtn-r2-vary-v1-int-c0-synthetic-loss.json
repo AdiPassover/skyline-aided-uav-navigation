@@ -1,0 +1,47 @@
+{
+  "dataset_dir": "datasets/mtn-r2-vary-v1",
+  "output_dir": "runs",
+  "run_id": "exp-int-001-mtn-r2-vary-v1-int-c0-synthetic-loss",
+  "estimator_id": "stitching-vo",
+  "estimator_version": "exp-int-001",
+  "is_target_hardware": false,
+  "downsampleFactor": 1,
+  "motion_model": "homography",
+  "navigation_source": "rigid_motion",
+  "refineEstimate": false,
+  "metric_readout": {
+    "enabled": true,
+    "fx_native_px": 512.0,
+    "h0_agl_m": 70.597447,
+    "tau_stale_s": 2.0,
+    "nominal_sample_interval_s": 0.1,
+    "height_csv": "datasets/mtn-r2-vary-v1/terrain.csv",
+    "height_time_column": "timestamp_s",
+    "height_relative_column": "baro_relative_m",
+    "height_semantics": "takeoff_relative",
+    "publish_as_navigation_source": false
+  },
+  "heading_readout": {
+    "enabled": true,
+    "heading_semantics": "sim_nadir_camera_heading",
+    "tau_stale_s": 2.0,
+    "nominal_sample_interval_s": 0.0166666667,
+    "max_rate_deg_per_s": 180.0,
+    "heading_csv": "datasets/mtn-r2-vary-v1/groundtruth.csv",
+    "heading_time_column": "timestamp_s",
+    "heading_column": "heading_deg",
+    "heading_latency_s": 0.0,
+    "heading_decimation": 1
+  },
+  "note": "EXP-INT-001 PRIMARY C0 arm on mtn-r2-vary-v1: identical to run-mtn-r2-vary-v1-vo-only.json (same frames, metric readout, height channel, authoritative nadir-camera heading, estimator, recenter behaviour, readout) plus the relocalization layer under the frozen policy reloc-c0-primary.json (DEC-INT-007) fed by the exact-identity North+West skyline profiles. The only intended difference from the VO_ONLY arm is that the layer may move the persistent position on an accepted re-anchor. CASE-B ARM: identical to the plain config plus the pre-registered synthetic_hard_loss block.",
+  "relocalization_config": "evaluation/eval_configs/int/exp-int-001/reloc-c0-primary.json",
+  "skyline_profiles": "datasets/mtn-r2-vary-v1/skyline_profiles.csv",
+  "synthetic_hard_loss": {
+    "acknowledge_synthetic": true,
+    "frames": [
+      450,
+      1000
+    ],
+    "note": "EXP-INT-001 case-B (hard-loss recovery) arm, pre-registered 2026-09-08 BEFORE any recovery result was seen: two forced losses on mtn-r2-vary-v1 (a DEV recording with no natural loss) at frame 450 (45.0 s, after the 30 s trusted-insertion window has filled and 15 s before the GT revisit of frame 22 at frame 598 / 59.8 s) and frame 1000 (100.0 s, 15 s before the closing revisit of frame 9 at frame 1148 / 114.8 s). Both arms lose at the same frames; VO_ONLY stays UNKNOWN after each loss, INT may recover on an accepted re-anchor. No e_before exists across a gap and none is fabricated."
+  }
+}

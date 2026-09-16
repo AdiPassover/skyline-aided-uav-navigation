@@ -1,0 +1,368 @@
+{
+  "_comment": [
+    "The one config for the FINAL simulator validation feature (20260903-225416-sky-final-sim-validation).",
+    "Paths resolve relative to this file. DEV = asian_village_hills_background; HELD-OUT = mountains +",
+    "large_city_flat behind configs/frozen/sim-final.prereg (contracts/freeze.md).",
+    "Conventions/options/sources/matcher blocks are the pilot's, verbatim, except the SegFormer",
+    "mask_root: the extended batch gets its own root so the pilot's pinned inference manifest is",
+    "never rewritten.",
+    "acceptance_variant.frozen is null until DEV calibration (T022) fills it; the prereg pins it."
+  ],
+  "raw_root": "../../simulator_skyline_data_extended",
+  "store_root": "../../observations_sim",
+  "conventions": {
+    "ue_world_axes": "x_north_y_east",
+    "altitude_datum_ue_cm": 0.0,
+    "altitude_datum": "ue_world_z_zero",
+    "pitch_sign": "positive_up",
+    "roll_sign": "positive_clockwise_image",
+    "attitude_order": "ZYX",
+    "quaternion_convention": null,
+    "verified_by": null
+  },
+  "options": {
+    "image_mode": "copy",
+    "preserve_nadir": true,
+    "gt_min_valid_frac": 1.0,
+    "mask_binarity_tolerance": 0.001
+  },
+  "levels": {
+    "asian_village_hills_background": {
+      "split": "dev",
+      "task_key": "village",
+      "sessions": [
+        "Run_20260903_172802",
+        "Run_20260903_173600",
+        "Run_20260903_173948",
+        "Run_20260903_175431",
+        "Run_20260903_175806",
+        "Run_20260903_180607",
+        "Run_20260903_180622",
+        "Run_20260903_180634",
+        "Run_20260903_180659",
+        "Run_20260903_180730",
+        "Run_20260903_180741",
+        "Run_20260903_180808",
+        "Run_20260903_180857",
+        "Run_20260903_180915"
+      ],
+      "nopath_sessions": {
+        "DAWN+CLEAR": "Run_20260903_180659",
+        "DAWN+CLOUDY": "Run_20260903_180730",
+        "DAWN+VERY_CLOUDY": "Run_20260903_180741",
+        "DAY+CLEAR": "Run_20260903_180607",
+        "DAY+CLOUDY": "Run_20260903_180622",
+        "DAY+VERY_CLOUDY": "Run_20260903_180634",
+        "DUSK+CLEAR": "Run_20260903_180808",
+        "DUSK+CLOUDY": "Run_20260903_180857",
+        "DUSK+VERY_CLOUDY": "Run_20260903_180915"
+      },
+      "swipe_sessions": [
+        "Run_20260903_172802",
+        "Run_20260903_173600",
+        "Run_20260903_173948",
+        "Run_20260903_175431",
+        "Run_20260903_175806"
+      ]
+    },
+    "mountains": {
+      "split": "final",
+      "task_key": "mountains",
+      "sessions": [
+        "Run_20260903_181649",
+        "Run_20260903_182143",
+        "Run_20260903_182539",
+        "Run_20260903_182924",
+        "Run_20260903_183252",
+        "Run_20260903_183659",
+        "Run_20260903_184325",
+        "Run_20260903_184347",
+        "Run_20260903_184358",
+        "Run_20260903_184502",
+        "Run_20260903_184515",
+        "Run_20260903_184528",
+        "Run_20260903_184626",
+        "Run_20260903_184639",
+        "Run_20260903_184708"
+      ],
+      "nopath_sessions": {
+        "DAWN+CLEAR": "Run_20260903_184502",
+        "DAWN+CLOUDY": "Run_20260903_184515",
+        "DAWN+VERY_CLOUDY": "Run_20260903_184528",
+        "DAY+CLEAR": "Run_20260903_184325",
+        "DAY+CLOUDY": "Run_20260903_184347",
+        "DAY+VERY_CLOUDY": "Run_20260903_184358",
+        "DUSK+CLEAR": "Run_20260903_184626",
+        "DUSK+CLOUDY": "Run_20260903_184639",
+        "DUSK+VERY_CLOUDY": "Run_20260903_184708"
+      },
+      "swipe_sessions": [
+        "Run_20260903_181649",
+        "Run_20260903_182143",
+        "Run_20260903_182539",
+        "Run_20260903_182924",
+        "Run_20260903_183252",
+        "Run_20260903_183659"
+      ]
+    },
+    "large_city_flat": {
+      "split": "final",
+      "task_key": "city",
+      "sessions": [
+        "Run_20260903_185219",
+        "Run_20260903_190502",
+        "Run_20260903_191024",
+        "Run_20260903_191458",
+        "Run_20260903_191857",
+        "Run_20260903_192628",
+        "Run_20260903_194002",
+        "Run_20260903_194038",
+        "Run_20260903_194126",
+        "Run_20260903_194403",
+        "Run_20260903_194539",
+        "Run_20260903_194617",
+        "Run_20260903_194721",
+        "Run_20260903_194838",
+        "Run_20260903_194909"
+      ],
+      "nopath_sessions": {
+        "DAWN+CLEAR": "Run_20260903_194403",
+        "DAWN+CLOUDY": "Run_20260903_194539",
+        "DAWN+VERY_CLOUDY": "Run_20260903_194617",
+        "DAY+CLEAR": "Run_20260903_194002",
+        "DAY+CLOUDY": "Run_20260903_194038",
+        "DAY+VERY_CLOUDY": "Run_20260903_194126",
+        "DUSK+CLEAR": "Run_20260903_194721",
+        "DUSK+CLOUDY": "Run_20260903_194838",
+        "DUSK+VERY_CLOUDY": "Run_20260903_194909"
+      },
+      "swipe_sessions": [
+        "Run_20260903_185219",
+        "Run_20260903_190502",
+        "Run_20260903_191024",
+        "Run_20260903_191458",
+        "Run_20260903_191857",
+        "Run_20260903_192628"
+      ]
+    }
+  },
+  "anchors_csv": {
+    "village": "sim-final-anchors-village.csv",
+    "mountains": "sim-final-anchors-mountains.csv",
+    "city": "sim-final-anchors-city.csv"
+  },
+  "assignments_csv": {
+    "village": "sim-final-assignments-village.csv",
+    "mountains": "sim-final-assignments-mountains.csv",
+    "city": "sim-final-assignments-city.csv"
+  },
+  "index_out": "../../evaluations/sim-ext-index",
+  "inventory_dir": "../../evaluations/sim-ext-inventory",
+  "silver_frame_list": "../../observations_sim/silver_frames_ext.csv",
+  "dp": {
+    "params": {
+      "min_boundary_contrast": 5.0,
+      "polarity_refusal_floor": -15.0,
+      "w_above": 0.45
+    }
+  },
+  "tasks": {
+    "spacings_m": [
+      250.0
+    ],
+    "tasks_out": "../../evaluations/sim-ext-tasks",
+    "stage_rule": {
+      "same_pose_m": 0.5,
+      "yaw_eps_deg": 0.5,
+      "attitude_eps_deg": 0.5
+    }
+  },
+  "sources": {
+    "sim_exact": {
+      "store_root": "../../observations_sim"
+    },
+    "segformer": {
+      "mask_root": "../../silver_masks/silver_sim_ext_segformer_b0",
+      "scale_short_side": 512,
+      "closing_px": 0,
+      "min_valid_frac": 0.5,
+      "expected_model_revision": "489d5cd81a0b59fab9b7ea758d3548ebe99677da"
+    },
+    "dp": {
+      "store_root": "../../observations_sim",
+      "frozen_digest_file": "frozen/poc_robust_dp.digest",
+      "extraction_manifest": "../../observations_sim/dp_extraction_manifest.json"
+    }
+  },
+  "matcher": {
+    "profile": {
+      "n_samples": 256,
+      "normalize_mean": true,
+      "detrend": false,
+      "units": "image_fraction"
+    },
+    "acceptance": {
+      "confidence_k": 5.0,
+      "reject_threshold": 0.5,
+      "viable_sigma": 3.0,
+      "ambiguity_margin_sigma": 1.0,
+      "degenerate_profile_std": 1e-06
+    },
+    "recall_k": 5,
+    "lag_search": false
+  },
+  "baselines": [
+    "ncc"
+  ],
+  "run_matrix": {
+    "exactpose": {
+      "sources": [
+        "sim_exact",
+        "segformer",
+        "dp"
+      ],
+      "levels": [
+        "village",
+        "mountains",
+        "city"
+      ]
+    },
+    "swipes": {
+      "sources": [
+        "sim_exact",
+        "segformer"
+      ],
+      "levels": [
+        "village",
+        "mountains",
+        "city"
+      ],
+      "dp_levels": [
+        "village"
+      ]
+    }
+  },
+  "experiments": {
+    "exp1_out": "../../evaluations/sim-ext-exp1-extraction",
+    "exp2_out": "../../evaluations/sim-ext-exp2-consistency",
+    "exp3_out": "../../evaluations/sim-ext-exp3-exactpose",
+    "exp4_out": "../../evaluations/sim-ext-exp4-deformation",
+    "exp5_out": "../../evaluations/sim-ext-exp5-swipes",
+    "exp6_out": "../../evaluations/sim-ext-exp6-hard",
+    "acceptance_out": "../../evaluations/sim-ext-acceptance",
+    "catastrophic_frac_height": 0.05,
+    "repeat_pair_max_gap_m": 5.0,
+    "diagnostic_matchers": {
+      "c1_bounded_lag_ncc": {
+        "max_lag_samples": 64
+      },
+      "c3_shift_scale_ncc": {
+        "max_lag_samples": 64,
+        "max_scale_deviation": 0.2,
+        "n_scale_steps": 41
+      }
+    },
+    "variant_out": "../../evaluations/sim-ext-exp-variant",
+    "variant_sources": [
+      "sim_exact",
+      "segformer"
+    ]
+  },
+  "acceptance_variant": {
+    "name": "accept-v2-margin",
+    "grid": {
+      "theta_s": [
+        0.5,
+        0.6,
+        0.7,
+        0.8,
+        0.9
+      ],
+      "theta_m": [
+        0.02,
+        0.05,
+        0.1,
+        0.15,
+        0.2
+      ]
+    },
+    "selection_rule": "lexicographic on DEV only: among cells with zero confident-false, max accepted-correct coverage, ties -> larger theta_m; if none, min confident-false then max coverage",
+    "calibration_records": {
+      "n": 1392,
+      "population": "pilot(sim_exact+segformer) + DEV village exactpose/swipes (sim_exact+segformer)"
+    },
+    "frozen": {
+      "theta_s": 0.9,
+      "theta_m": 0.15
+    }
+  },
+  "datasets_root": "../../datasets",
+  "refdb_root": "../../skyline_refdb",
+  "runs_root": "../../skyline_runs",
+  "evaluations_root": "../../evaluations",
+  "evaluation_configs_root": "../../evaluation/configs",
+  "run_id_pattern": "sim-{task}-s{spacing}-{baseline}-{source}",
+  "geodetic_origin": {
+    "lat_deg": 0.0,
+    "lon_deg": 0.0,
+    "alt_m": 0.0,
+    "is_synthetic": true
+  },
+  "preregistration_ref": "frozen/sim-final.prereg",
+  "report_out": "../../evaluations/sim-final-report",
+  "sessions": [
+    "Run_20260903_172802",
+    "Run_20260903_173600",
+    "Run_20260903_173948",
+    "Run_20260903_175431",
+    "Run_20260903_175806",
+    "Run_20260903_180607",
+    "Run_20260903_180622",
+    "Run_20260903_180634",
+    "Run_20260903_180659",
+    "Run_20260903_180730",
+    "Run_20260903_180741",
+    "Run_20260903_180808",
+    "Run_20260903_180857",
+    "Run_20260903_180915",
+    "Run_20260903_181649",
+    "Run_20260903_182143",
+    "Run_20260903_182539",
+    "Run_20260903_182924",
+    "Run_20260903_183252",
+    "Run_20260903_183659",
+    "Run_20260903_184325",
+    "Run_20260903_184347",
+    "Run_20260903_184358",
+    "Run_20260903_184502",
+    "Run_20260903_184515",
+    "Run_20260903_184528",
+    "Run_20260903_184626",
+    "Run_20260903_184639",
+    "Run_20260903_184708",
+    "Run_20260903_185219",
+    "Run_20260903_190502",
+    "Run_20260903_191024",
+    "Run_20260903_191458",
+    "Run_20260903_191857",
+    "Run_20260903_192628",
+    "Run_20260903_194002",
+    "Run_20260903_194038",
+    "Run_20260903_194126",
+    "Run_20260903_194403",
+    "Run_20260903_194539",
+    "Run_20260903_194617",
+    "Run_20260903_194721",
+    "Run_20260903_194838",
+    "Run_20260903_194909"
+  ],
+  "matcher_successor": {
+    "variant": "c1_bounded_lag_ncc",
+    "spec": {
+      "max_lag_samples": 32
+    },
+    "decision_rule": "research.md R7, one-rung ladder; recorded in specs/20260903-225416-sky-final-sim-validation/matcher-decision.md BEFORE any DEV retrieval existed",
+    "provenance": "p95 |best C1 lag| = 18.0 samples (max 23) at the 75-150 m lateral bin of the DEV GT deformation, rounded up to the power-of-two margin per the pre-declared formula",
+    "comparison_layer": "report.variant_retrieval (C0 + successor on identical pairs, whole-database ranking); primary records stay C0 through the frozen chain"
+  }
+}

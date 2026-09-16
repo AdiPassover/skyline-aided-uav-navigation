@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0.0",
+  "config_digest": "21eaa5b136f951bd15314b7a2a9653decdb200e20d860e5c9f9a09cade7dc0bf",
+  "type": "sim2",
+  "rotation_deg": 277.7704695346601,
+  "translation_e": -14.759580654502956,
+  "translation_n": 22.83888633136508,
+  "scale": 0.011390322319645535,
+  "n_points": 280,
+  "reflection_rejected": false,
+  "near_straight": false
+}

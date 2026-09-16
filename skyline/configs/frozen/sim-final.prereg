@@ -1,0 +1,257 @@
+{
+  "acceptance": {
+    "frozen_rule": {
+      "ambiguity_margin_sigma": 1.0,
+      "confidence_k": 5.0,
+      "degenerate_profile_std": 1e-06,
+      "reject_threshold": 0.5,
+      "viable_sigma": 3.0
+    },
+    "variant": {
+      "calibration_records": {
+        "n": 1392,
+        "population": "pilot(sim_exact+segformer) + DEV village exactpose/swipes (sim_exact+segformer)"
+      },
+      "frozen": {
+        "theta_m": 0.15,
+        "theta_s": 0.9
+      },
+      "grid": {
+        "theta_m": [
+          0.02,
+          0.05,
+          0.1,
+          0.15,
+          0.2
+        ],
+        "theta_s": [
+          0.5,
+          0.6,
+          0.7,
+          0.8,
+          0.9
+        ]
+      },
+      "name": "accept-v2-margin",
+      "selection_rule": "lexicographic on DEV only: among cells with zero confident-false, max accepted-correct coverage, ties -> larger theta_m; if none, min confident-false then max coverage"
+    }
+  },
+  "created_utc": "2026-09-03T21:14:03Z",
+  "experiment": "EXP-SKY-008",
+  "feature": "20260903-225416-sky-final-sim-validation",
+  "geodetic_origin": {
+    "alt_m": 0.0,
+    "is_synthetic": true,
+    "lat_deg": 0.0,
+    "lon_deg": 0.0
+  },
+  "index": {
+    "content_digest": "2fd06a76081517b12a0226b7103bbc06674965a05033a9af733d36287af56a7c",
+    "n_rows": 2395,
+    "sidecar_digests": {
+      "anchors_csv:city": "036e71472621e6d754ce43d2822256fa78574ddee76609e9d2fa7cb9339c98f9",
+      "anchors_csv:mountains": "abf31c5841d367833a94158f9310b40d1747965262855bf1bd668bdf267b6da7",
+      "anchors_csv:village": "6f6e1e8e0dfc448c0b18c554c5c21df58cd24ef96d0aa6c939619206a9f8c3e9",
+      "assignments_csv:city": "f9f8ede48cac92e292175c5b9ddcb09194cad042fefc565894417a42d1eb85cf",
+      "assignments_csv:mountains": "435f5f91b05b3920122c4d50cc84e311de034f5421d264af13f08b8789002eb5",
+      "assignments_csv:village": "b3622c8151fbcd050375062212ded7ddf17105d3fdeb9d927eda2bb3e4837de7"
+    },
+    "split_rule": "by level and nothing else: {\"asian_village_hills_background\": \"dev\", \"large_city_flat\": \"final\", \"mountains\": \"final\"}"
+  },
+  "interpretation": {
+    "criterion_1_extraction": "SegFormer median abs error <= 5 px AND catastrophic-frame rate <= 10% per level x condition slice -> sufficient for that slice; else insufficient there.",
+    "criterion_2_discriminability": "exact-pose Recall@1 (GT and SegFormer, C0) >= 5x chance AND >= 60% at 27 and 30 references -> demonstrated; 30-60% -> partial; below -> not demonstrated.",
+    "criterion_3_viewpoint_tolerance": "R80 = the largest displacement radius with swipe Recall@1 >= 80% supported by >= 30 attainable queries per level (R90 likewise at 90%); no radius clears -> none claimed.",
+    "criterion_4_safety": "an acceptance rule (frozen or variant) with held-out accepted precision >= 90% and confident-false <= 5% at coverage >= 20% -> demonstrated; else not.",
+    "criterion_5_domain_dependence": "criteria 1-4 stated per level; a level failing while another passes -> CONDITIONALLY SUPPORTED / DOMAIN-LIMITED with the failing mechanism named.",
+    "verdicts": "SUPPORTED OPERATING REGIME iff 1-4 pass on both held-out levels; CONDITIONALLY SUPPORTED / DOMAIN-LIMITED iff they pass on at least one level or in a nameable sub-regime; NOT SUPPORTED iff discriminability or extraction fails everywhere; NOT INTERPRETABLE iff a validity problem (GT inconsistency, leak, structural defect) blocks the reading. Domain-limited is closure-worthy; closure is never forced."
+  },
+  "limitations": "naveval tier T2 (ue5_simulator), synthetic geodetic origin; pitch/roll signs declared but unverified (no R0-S render) and the quaternion convention non-discriminable on a level batch \u2014 both standing caveats ride every session; DEV = asian_village_hills_background (also the pilot's level), held-out = mountains + large_city_flat; database sizes 10/30/27; known world-locked-North heading; no yaw/attitude variation, no night/rain, no real-flight or onboard claim.",
+  "matcher": {
+    "baselines": [
+      "ncc"
+    ],
+    "block": {
+      "acceptance": {
+        "ambiguity_margin_sigma": 1.0,
+        "confidence_k": 5.0,
+        "degenerate_profile_std": 1e-06,
+        "reject_threshold": 0.5,
+        "viable_sigma": 3.0
+      },
+      "lag_search": false,
+      "profile": {
+        "detrend": false,
+        "n_samples": 256,
+        "normalize_mean": true,
+        "units": "image_fraction"
+      },
+      "recall_k": 5
+    },
+    "primary_baseline": "ncc",
+    "successor": {
+      "comparison_layer": "report.variant_retrieval (C0 + successor on identical pairs, whole-database ranking); primary records stay C0 through the frozen chain",
+      "decision_rule": "research.md R7, one-rung ladder; recorded in specs/20260903-225416-sky-final-sim-validation/matcher-decision.md BEFORE any DEV retrieval existed",
+      "provenance": "p95 |best C1 lag| = 18.0 samples (max 23) at the 75-150 m lateral bin of the DEV GT deformation, rounded up to the power-of-two margin per the pre-declared formula",
+      "spec": {
+        "max_lag_samples": 32
+      },
+      "variant": "c1_bounded_lag_ncc"
+    }
+  },
+  "metrics": [
+    "extraction: median/p90/p95 abs px, normalized, coverage, refusal rate, catastrophic frac (|err| > 5% height), signed bias \u2014 per level x time_of_day x clouds x TIMExCLOUD x anchor",
+    "consistency: 36 pairs per anchor (TIME-held / CLOUD-held / mixed), raw + offset-removed, GT pairs asserted 0 px, refusal consistency, catastrophic switches",
+    "retrieval: Recall@1/@3/@5, correct rank, correct/best-incorrect score, top1-top2 margin, cross-anchor aliasing, acceptance, confident-false \u2014 per level, per condition, vs chance 1/n_references and per-source effective database size",
+    "swipes: rank-1 vs total displacement / nearest-reference distance / per-direction distance / outbound-inbound; R90/R80 radii only where >= 30 attainable queries support the bin",
+    "acceptance: precision / coverage / confident-false for the frozen rule AND accept-v2-margin, side by side, unchanged from their frozen definitions"
+  ],
+  "prereg_version": "1.0.0",
+  "raw": {
+    "digest": "1419a1c7f9f98ccd518b2a89f89a48a234797d7f2eb4a1f3855bf82ca77ff8ab  4878 files",
+    "root": "simulator_skyline_data_extended"
+  },
+  "run_matrix": {
+    "exactpose": {
+      "levels": [
+        "village",
+        "mountains",
+        "city"
+      ],
+      "sources": [
+        "sim_exact",
+        "segformer",
+        "dp"
+      ]
+    },
+    "swipes": {
+      "dp_levels": [
+        "village"
+      ],
+      "levels": [
+        "village",
+        "mountains",
+        "city"
+      ],
+      "sources": [
+        "sim_exact",
+        "segformer"
+      ]
+    }
+  },
+  "sources": {
+    "dp": {
+      "method_config_digest": "2b8d643d0364344f3189ccdec717d1c1887f06456028c9b84a9f2d4d13ec7c58",
+      "method_id": "poc_robust_dp",
+      "provenance": "automatic:poc_robust_dp"
+    },
+    "segformer": {
+      "closing_px": 0,
+      "convert_version": "1.0.0",
+      "full_width_policy": {
+        "invalid_columns": "top_edge",
+        "refusal_mechanism": "no curve for references (database hole); for queries a sentinel flat curve at the top edge, which the unchanged matcher's degenerate-profile rule turns into EXTRACTION_FAILURE with no position",
+        "status_not_ok": "extraction_failure",
+        "top_edge_row": 0.0
+      },
+      "label_map_digest": "fef4bf3b8fbd5d1a5ef12950aec8bf2baae8e020da8fc4f6aaea7345961fa694",
+      "method_id": "segformer_b0_ade20k",
+      "min_valid_frac": 0.5,
+      "model_revision": "489d5cd81a0b59fab9b7ea758d3548ebe99677da",
+      "policy_version": "1.1.0",
+      "provenance": "automatic:segformer_b0_ade20k",
+      "scale_tag": "s512"
+    },
+    "sim_exact": {
+      "gt": true,
+      "kind": "sim_observation_store_exact",
+      "provenance": "oracle:sim_exact"
+    }
+  },
+  "tasks": {
+    "final-exactpose-city": {
+      "grid_counts": {
+        "250": 27
+      },
+      "n_query_rows": 216,
+      "reference_observation_ids_digest": "8da3832c851d1fa6a546f69e41e12d4ac2a989ca4d2adfe5ad349322b2e7e697",
+      "task_digest": "bc896eac1013620fde24aca1f327a1e85336aee67171eb1e709acddd3241c099",
+      "tolerances": {
+        "250": {
+          "tau_near_m": 250.0,
+          "tau_pos_m": 125.0
+        }
+      }
+    },
+    "final-exactpose-mountains": {
+      "grid_counts": {
+        "250": 30
+      },
+      "n_query_rows": 240,
+      "reference_observation_ids_digest": "7f690deec319b096fea864d8582a7c1cac45af2c365a03414d421deb926a1a4e",
+      "task_digest": "b0704b62b557b53313442c8bb2b3c6460a0fff63f17298477e7b7f5ad8c635ab",
+      "tolerances": {
+        "250": {
+          "tau_near_m": 250.0,
+          "tau_pos_m": 125.0
+        }
+      }
+    },
+    "final-exactpose-village": {
+      "grid_counts": {
+        "250": 10
+      },
+      "n_query_rows": 80,
+      "reference_observation_ids_digest": "077b407c2eb27c8ff96591980460590ab552ac14fabfa8b702be2bd71879a34b",
+      "task_digest": "44118d41b940ccdc748eb8c92f7ee42d7dd75e2a970920cffd378ce19312aeb9",
+      "tolerances": {
+        "250": {
+          "tau_near_m": 250.0,
+          "tau_pos_m": 125.0
+        }
+      }
+    },
+    "final-swipes-city": {
+      "grid_counts": {
+        "250": 27
+      },
+      "n_query_rows": 617,
+      "reference_observation_ids_digest": "8da3832c851d1fa6a546f69e41e12d4ac2a989ca4d2adfe5ad349322b2e7e697",
+      "task_digest": "4f5cbef2b0222396861179d121c1fa3903404ce01d1ccfab4d6644c33a7c4d9f",
+      "tolerances": {
+        "250": {
+          "tau_near_m": 250.0,
+          "tau_pos_m": 125.0
+        }
+      }
+    },
+    "final-swipes-mountains": {
+      "grid_counts": {
+        "250": 30
+      },
+      "n_query_rows": 640,
+      "reference_observation_ids_digest": "7f690deec319b096fea864d8582a7c1cac45af2c365a03414d421deb926a1a4e",
+      "task_digest": "263f54cffcdf2006340b8517008e0353be4d327897f9c009deda60dda6a89f06",
+      "tolerances": {
+        "250": {
+          "tau_near_m": 250.0,
+          "tau_pos_m": 125.0
+        }
+      }
+    },
+    "final-swipes-village": {
+      "grid_counts": {
+        "250": 10
+      },
+      "n_query_rows": 535,
+      "reference_observation_ids_digest": "077b407c2eb27c8ff96591980460590ab552ac14fabfa8b702be2bd71879a34b",
+      "task_digest": "e16150bd6ab063d6e7b6add13b769b86572c68419d7c809d7bb2fa744e8aaec9",
+      "tolerances": {
+        "250": {
+          "tau_near_m": 250.0,
+          "tau_pos_m": 125.0
+        }
+      }
+    }
+  }
+}

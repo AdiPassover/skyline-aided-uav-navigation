@@ -1,0 +1,11 @@
+frame_index,timestamp_s,image_path
+0,0.0,images/frame_000000.png
+1,0.1,images/frame_000001.png
+2,0.2,images/frame_000002.png
+3,0.3,images/frame_000003.png
+4,0.4,images/frame_000004.png
+5,0.5,images/frame_000005.png
+6,0.6,images/frame_000006.png
+7,0.7,images/frame_000007.png
+8,0.8,images/frame_000008.png
+9,0.9,images/frame_000009.png

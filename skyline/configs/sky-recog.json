@@ -1,0 +1,89 @@
+{
+  "_comment": [
+    "EXP-SKY-010: recognition radius of the frozen C1-32 matcher versus true horizontal separation.",
+    "Reads the EXP-SKY-008 extended batch as ingested (observations_sim + sim-ext-index) and the",
+    "SegFormer label maps of that batch; writes only under out_dir. No frozen artifact is touched;",
+    "no range map and no relpose estimator is used. Region rule, bins, support and radius rule are",
+    "the ones pre-registered in EXP-SKY-010.",
+    "posthoc_bins_m (added after the first report): the primary 0-5/5-10 bins hold only 16/14 primary queries on the sparse database (the pre-run density estimate counted vertical-leg and hard-site frames); the merged 0-10 bin view is reported as POST-HOC beside the pre-registered rule."
+  ],
+  "sim_final_config": "sim-final.json",
+  "index_csv": "../../evaluations/sim-ext-index/index.csv",
+  "store_root": "../../observations_sim",
+  "variant_dir": "../../evaluations/sim-ext-exp-variant",
+  "out_dir": "../../evaluations/sky-recog",
+  "sources": [
+    "sim_exact",
+    "segformer"
+  ],
+  "profile_n_samples": 256,
+  "max_lag_samples": 32,
+  "min_overlap_frac": 0.6,
+  "recall_k": 5,
+  "acceptance": {
+    "theta_s": 0.9,
+    "theta_m": 0.15
+  },
+  "tau_region_m": 125.0,
+  "tau_region_sensitivity_m": [
+    50.0,
+    250.0
+  ],
+  "reference_condition": "DAY+CLEAR",
+  "appearance_reference_conditions": [
+    "DAWN+VERY_CLOUDY",
+    "DUSK+CLOUDY"
+  ],
+  "dense_holdout_radii_m": [
+    0.0,
+    5.0,
+    10.0,
+    20.0,
+    30.0,
+    40.0,
+    60.0,
+    80.0,
+    100.0
+  ],
+  "bins_m": [
+    0.0,
+    5.0,
+    10.0,
+    20.0,
+    30.0,
+    40.0,
+    60.0,
+    80.0,
+    100.0,
+    150.0,
+    200.0
+  ],
+  "support": {
+    "min_queries": 30,
+    "min_sites": 3
+  },
+  "radius_rule": {
+    "region_top1_min": 0.9,
+    "accepted_false_region_max": 0.02,
+    "region_recall_k_min": 0.9
+  },
+  "dev_level": "village",
+  "level_keys": {
+    "asian_village_hills_background": "village",
+    "mountains": "mountains",
+    "large_city_flat": "city"
+  },
+  "frozen_check_every": 25,
+  "posthoc_bins_m": [
+    0.0,
+    10.0,
+    20.0,
+    30.0,
+    40.0,
+    60.0,
+    80.0,
+    100.0,
+    150.0,
+    200.0
+  ]
+}

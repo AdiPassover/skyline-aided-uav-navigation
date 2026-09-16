@@ -1,0 +1,36 @@
+{
+  "_comment": [
+    "INT skyline session ingest for dataset mtn-r2-vary-v1 (eight_figure_mountains_less_steep/Run_20260907_150845), view north: the SKY adapter",
+    "(hsreloc.simret.adapter, unmodified) with the EXP-SKY-013 conventions and options,",
+    "image_mode reference (no image copied). Run from skyline/:",
+    "PYTHONPATH=. python -m hsreloc.simret.cli ingest --config ../evaluation/eval_configs/int/skyline-sessions/Run_20260907_150845-north.json"
+  ],
+  "run_dir": "../../../../important simulator runs/eight_figure_mountains_less_steep/Run_20260907_150845",
+  "store_root": "../../../../observations_sim_int",
+  "session_id": "Run_20260907_150845-north",
+  "conventions": {
+    "ue_world_axes": "x_north_y_east",
+    "altitude_datum_ue_cm": 0.0,
+    "altitude_datum": "ue_world_z_zero",
+    "pitch_sign": "positive_up",
+    "roll_sign": "positive_clockwise_image",
+    "attitude_order": "ZYX",
+    "quaternion_convention": null,
+    "verified_by": null
+  },
+  "options": {
+    "image_mode": "reference",
+    "preserve_nadir": true,
+    "gt_min_valid_frac": 1.0,
+    "mask_binarity_tolerance": 0.001,
+    "heading_lock_tolerance_deg": 0.5,
+    "quaternion_norm_tolerance": 0.001,
+    "quaternion_angle_tolerance_deg": 0.5,
+    "calibration_tolerance_px": 1.0,
+    "calibration_tolerance_rel": 0.01,
+    "view": "north"
+  },
+  "sessions": [
+    "Run_20260907_150845-north"
+  ]
+}

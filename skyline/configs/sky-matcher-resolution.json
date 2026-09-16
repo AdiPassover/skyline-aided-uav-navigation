@@ -1,0 +1,100 @@
+{
+  "_comment": [
+    "EXP-SKY-013: does bounded-lag freedom cost positional resolution for INT's DISCRETE_REFERENCE?",
+    "Lag bound is the ONLY independent variable: C0 and C1-4/8/16/32 share profile length, overlap",
+    "semantics, normalization, score definition and tie-break. All five arms are read off ONE",
+    "bound-32 scoring pass (hsreloc.simret.lagstudy.NestedBoundBank), cross-checked against",
+    "BoundedLagNccMatcher at each bound and against FrozenNccMatcher for C0 — lag exactly, score to",
+    "1e-12, abort on disagreement.",
+    "",
+    "The figure-eight pair is DEVELOPMENT data. Its settings.json declares",
+    "level asian_village_hills_background — the VILLAGE and the EXP-SKY-008 DEV site; 'flat' in the",
+    "directory name is the constant-altitude flight surface of Run_20260907_140138, not the terrain.",
+    "The runs carry no vo/ directory, so segment continuity is established from the skyline trace",
+    "(spacing 9.08-10.32 m, no discontinuity near the 3x teleport threshold) and declared.",
+    "",
+    "Frozen inputs are read from sky-dual.json / sky-dual-hardcity.json and their committed outputs;",
+    "hsreloc/matchers, hsreloc/retrieval and simret/{recog,relpose,dualview,acceptance}.py are",
+    "dependencies, never edit targets. Nothing under evaluations/sky-dual* or observations_sim_dual*",
+    "is written: this study has its own store, mask root and out_dir."
+  ],
+
+  "raw_root": "../../simulator_skyline_data_both_directions",
+  "fig8_dir": "figure_8_flat_surface",
+  "fig8_runs": {
+    "Run_20260907_140138": {"key": "fig8_const", "height_mode": "constant", "path_id": "EghtFigure"},
+    "Run_20260907_140549": {"key": "fig8_vary", "height_mode": "varying", "path_id": "EghtFigureVaryingHeights"}
+  },
+  "fig8_level": "asian_village_hills_background",
+  "fig8_level_key": "village",
+
+  "store_root": "../../observations_sim_fig8",
+  "out_dir": "../../evaluations/sky-matcher-resolution",
+
+  "frozen_dual_config": "sky-dual.json",
+  "frozen_dual_out": "../../evaluations/sky-dual",
+  "frozen_hardcity_config": "sky-dual-hardcity.json",
+  "frozen_hardcity_out": "../../evaluations/sky-dual-hardcity",
+
+  "views": ["north", "west"],
+  "sources": ["sim_exact", "segformer"],
+
+  "conventions": {
+    "ue_world_axes": "x_north_y_east",
+    "altitude_datum_ue_cm": 0.0,
+    "altitude_datum": "ue_world_z_zero",
+    "pitch_sign": "positive_up",
+    "roll_sign": "positive_clockwise_image",
+    "attitude_order": "ZYX",
+    "quaternion_convention": null,
+    "verified_by": null
+  },
+  "ingest_options": {
+    "image_mode": "reference",
+    "preserve_nadir": true,
+    "gt_min_valid_frac": 1.0,
+    "mask_binarity_tolerance": 0.001,
+    "heading_lock_tolerance_deg": 0.5,
+    "quaternion_norm_tolerance": 0.001,
+    "quaternion_angle_tolerance_deg": 0.5,
+    "calibration_tolerance_px": 1.0,
+    "calibration_tolerance_rel": 0.01
+  },
+
+  "silver_inference_config": "silver-infer-fig8.json",
+  "segformer": {
+    "mask_root": "../silver_masks/silver_sim_fig8_segformer_b0",
+    "scale_short_side": 512,
+    "closing_px": 0,
+    "min_valid_frac": 0.5,
+    "expected_model_revision": "489d5cd81a0b59fab9b7ea758d3548ebe99677da"
+  },
+
+  "bounds": [0, 4, 8, 16, 32],
+  "profile_n_samples": 256,
+  "max_lag_samples": 32,
+  "min_overlap_frac": 0.6,
+  "fov_deg": 90.0,
+  "recall_k": 5,
+
+  "acceptance": {"theta_s": 0.9, "theta_m": 0.15},
+  "dev_gates": {"sparse_frame": [0.95, 0.20], "dense_region": [0.95, 0.20]},
+  "gate_grid": {"theta_s": [0.80, 0.85, 0.90, 0.95], "theta_m": [0.05, 0.10, 0.15, 0.20]},
+  "tau_region_m": 125.0,
+  "tau_agree_m": 125.0,
+
+  "_catastrophic_comment": [
+    "'catastrophically wrong place' is declared at 500 m: an order of magnitude beyond tau_region",
+    "and the scale of the EXP-SKY-012 hard-city false accepts (3 876 m). false_region at tau = 125 m",
+    "is reported beside it as the established SKY rule; the two are never merged."
+  ],
+  "catastrophic_m": 500.0,
+
+  "recency_k": [0, 5, 10, 20, 30],
+  "sparse_strides": [3, 6],
+  "dense_holdout_radii_m": [0, 10, 20, 30, 40, 60, 80, 100],
+  "bins_m": [0, 10, 20, 30, 40, 60, 80, 100, 150, 200, 300],
+  "selected_distance_quantiles": [50, 90, 95, 99],
+  "frozen_check_every": 10,
+  "chunk_references": 48
+}

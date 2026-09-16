@@ -1,0 +1,11 @@
+{
+  "dataset_dir": "datasets/hkairport01-a",
+  "output_dir": "runs",
+  "run_id": "hkairport01-a-run-v1",
+  "estimator_id": "stitching-vo",
+  "estimator_version": "exp002-a",
+  "is_target_hardware": false,
+  "downsampleFactor": 2,
+  "navigation_source": "mosaic_legacy",
+  "navigation_source_note": "EXP-002 Execution A baseline (runs/hkairport01-a-run-v1). Pinned explicitly by DEC-VO-008 when the default moved to rigid_motion; this config reproduced its committed run record under the OLD implicit default and must keep doing so."
+}

@@ -1,0 +1,30 @@
+{
+  "_comment": [
+    "EXP-SKY-012: dual-view (North + West) validation on the previously missing large_flat_city HardSwipe.",
+    "A targeted follow-up to EXP-SKY-011: ONE new run, scored against the IDENTICAL city reference memory",
+    "EXP-SKY-011 used (the paired reference list read from evaluations/sky-dual/cells/scores_city_*.npz and",
+    "rebuilt from the frozen observations_sim_dual store; the rebuilt bank must reproduce frozen score rows",
+    "to 1e-12 before any new query is scored). Every rule, threshold, region definition and gate is the",
+    "EXP-SKY-011 one: frozen_config supplies them and this file overrides only the paths of the new run,",
+    "its own store, its own SegFormer mask root and its own output directory, so nothing under",
+    "evaluations/sky-dual, observations_sim_dual or the frozen mask root is written.",
+    "DEV-frozen gates are read from evaluations/sky-dual/metrics.json (selected_gates); the frozen",
+    "baseline gate 0.90/0.15 (frame level) is the EXP-SKY-010 rule that accepted 58/97 of the old city",
+    "HardSwipe on SegFormer. No threshold is chosen on this run; the 4x4 grid is reported as sensitivity only."
+  ],
+  "frozen_config": "sky-dual.json",
+  "frozen_out_dir": "../../evaluations/sky-dual",
+  "frozen_city_run_ids": ["Run_20260906_192920", "Run_20260906_201742"],
+  "frozen_city_settings_run": "Run_20260906_192920",
+  "run_dir": "../../simulator_skyline_data_both_directions/large_flat_city/Run_20260907_125137",
+  "level_dir": "large_flat_city",
+  "expected_site": {"path_id": "HardSwipe", "anchor_id": "a16", "hard_tag": true},
+  "store_root": "../../observations_sim_dual_hardcity",
+  "out_dir": "../../evaluations/sky-dual-hardcity",
+  "silver_inference_config": "silver-infer-dual-hardcity.json",
+  "segformer_mask_root": "../silver_masks/silver_sim_dual_hardcity_segformer_b0",
+  "memory_check_queries": 12,
+  "frozen_check_every": 10,
+  "veto_rule": {"name": "north_primary_west_veto",
+                "definition": "accept iff North passes its gate and NOT (West passes its gate with a top-1 outside North's top-1 region, tau_agree)"}
+}

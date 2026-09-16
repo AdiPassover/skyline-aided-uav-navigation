@@ -1,0 +1,33 @@
+# Build output
+build/
+.gradle/
+out/
+bin/
+
+# IDE and OS files
+.idea/
+*.iml
+.vscode/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+
+# Recorded data, generated data and outputs (see docs/data.md)
+/important simulator runs/
+/simulator_skyline_data*/
+/simulator_vo_data/
+/datasets/
+/runs/
+/observations_sim*/
+/silver_masks/
+/evaluations/
+/skyline_runs/
+/figures/
+evaluation/tools/vo_heading_runtime/inputs/

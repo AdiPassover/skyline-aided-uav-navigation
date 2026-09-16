@@ -1,0 +1,2 @@
+segment_id,time_start_s,distance_start_m,scale,scale_ratio_to_global,spans_recenter,n_poses,refusal_reason
+0,0.0,0.0,0.011390322319645535,1.0,True,280,

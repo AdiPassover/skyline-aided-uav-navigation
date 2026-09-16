@@ -1,0 +1,11 @@
+query_index,roll_deg,pitch_deg,compass_prior_deg,in_coverage
+0,3,-2,92,true
+1,10,1,260,true
+2,-5,0,10,true
+3,2,0,,true
+4,-8,3,,true
+5,0,0,0,false
+6,40,0,,true
+7,4,-1,125,true
+8,-3,2,,true
+9,1,0,0,false

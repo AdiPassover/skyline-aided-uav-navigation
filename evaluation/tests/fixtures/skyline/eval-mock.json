@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0.0",
+  "evaluation_id": "skyline-mock",
+  "run_record": "run",
+  "query_set": "queryset",
+  "operational_tolerance_m": 50,
+  "confidence_reject_threshold": 0.5,
+  "recall_k": 1,
+  "calibration_bins": 3,
+  "condition_slices": { "roll_bins": [0, 5, 15, 90], "prior_error_bins": [0, 5, 15, 180] }
+}

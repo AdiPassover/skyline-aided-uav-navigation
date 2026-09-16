@@ -1,0 +1,2 @@
+segment_id,label,definition_source,start_index,end_index,n_points,contains_events,ate_rmse_m,path_length_m,endpoint_error_m
+0,loop,metadata,0,279,280,True,10.493269378756276,106.72549871821735,9.12082217620931

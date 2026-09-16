@@ -1,0 +1,12 @@
+{
+  "dataset_dir": "datasets/bvo-ramp-constalt",
+  "output_dir": "runs",
+  "run_id": "bvo-ramp-constalt-affine-rigid-v1",
+  "estimator_id": "stitching-vo",
+  "estimator_version": "exp-vo-012",
+  "is_target_hardware": false,
+  "downsampleFactor": 1,
+  "motion_model": "affine",
+  "navigation_source": "rigid_motion",
+  "logical_transform_sidecar": true
+}
