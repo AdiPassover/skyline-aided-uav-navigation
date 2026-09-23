@@ -20,6 +20,8 @@ __pycache__/
 venv/
 
 # Recorded data, generated data and outputs (see docs/data.md)
+/INT/
+/SKY/
 /important simulator runs/
 /simulator_skyline_data*/
 /simulator_vo_data/
@@ -28,6 +30,7 @@ venv/
 /observations_sim*/
 /silver_masks/
 /evaluations/
+/skyline_refdb/
 /skyline_runs/
 /figures/
 evaluation/tools/vo_heading_runtime/inputs/

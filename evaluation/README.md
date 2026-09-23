@@ -12,6 +12,9 @@ drivers and datasets written by the ingest tools, and computes metrics, tables a
 | `confidence_configs/` | Calibration files for the optional, unvalidated confidence scorer. Read by Java tests. |
 | `tools/` | Per-experiment scripts. `docs/reproducing.md` maps them to the reported results. |
 
+Where the datasets come from is described in `docs/data.md`, and the evaluation commands in context
+in `docs/workflows.md`.
+
 Tests (from this directory; the tool tests under `tools/` are collected too):
 
 ```bash

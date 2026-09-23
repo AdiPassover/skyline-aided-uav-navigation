@@ -16,7 +16,7 @@ nothing about the height datums, the ENU mapping or the body-yaw quarantine is r
 Kept as a wrapper rather than an edit of the VO adapter, so that adapter is unchanged.
 
     PY=<repo>/.venv/Scripts/python.exe
-    $PY evaluation/tools/int/ingest_ue_run_int.py --source "important simulator runs/Run_20260905_190438" \\
+    $PY evaluation/tools/int/ingest_ue_run_int.py --source <UE run folder with settings.json and vo/> \\
         --dataset-id intsmoke-mtn-190438-v1 --out-root <scratch>/datasets
 """
 from __future__ import annotations

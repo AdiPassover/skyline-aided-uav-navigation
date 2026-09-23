@@ -1,7 +1,7 @@
 # Skyline-Aided UAV Navigation
 
 Implementation accompanying the master's thesis *Stitching Based UAV Optical Navigation With
-Skyline-based Localization* (Adi Passover, 2026).
+Skyline-based Localization* (Adi Peisach, Ariel University, 2026).
 
 A downward-looking camera gives a UAV a continuous estimate of its own motion, but that estimate is
 relative and drifts. This repository implements a navigation framework that combines a
@@ -66,7 +66,7 @@ UE5 recording ─ingest─> dataset: frames, ground truth, height, heading ─�
 | `src/test/` | JUnit 5 tests |
 | `evaluation/` | Python evaluator `naveval`, run and evaluation configs, per-experiment tools ([README](evaluation/README.md)) |
 | `skyline/` | Python skyline bench `hsreloc`: simulator ingest, extraction, matchers, studies ([README](skyline/README.md)) |
-| `docs/` | [Data layout and formats](docs/data.md), [results-to-code map](docs/reproducing.md) |
+| `docs/` | [Data layout and formats](docs/data.md), [workflows](docs/workflows.md), [results-to-code map](docs/reproducing.md) |
 
 ## Requirements
 
@@ -99,75 +99,44 @@ is absent. `JavaProducedRunFixtureTest` rewrites `evaluation/tests/fixtures/java
 the local JVM version and timings on every run; that change is expected and should not be
 committed.
 
-## Running
+## Usage
 
-The Java driver reads a JSON config and writes a run record to `runs/<run_id>/`. Paths inside run
-configs are relative to the working directory, so run it from the repository root:
+[docs/workflows.md](docs/workflows.md) is the practical guide: building and testing, preparing the
+published data, running the visual odometry and the integrated system, regenerating skyline
+profiles, replaying relocalization over a recorded track, evaluating runs, and running the skyline
+studies. The Java driver reads a JSON config and writes a run record to `runs/<run_id>/`; run it
+from the repository root, for example:
 
 ```bash
 java -cp "build/install/skyline-aided-uav-navigation/lib/*" org.boofcv.evaluation.VoRunnerApp \
-    --config evaluation/eval_configs/int/exp-int-003/run-ho1-mtn-fig8-vary-v1-int-c0.json \
-    [--dataset-dir <path>] [--run-id <id>]
+    --config evaluation/eval_configs/int/exp-int-003/run-ho1-mtn-fig8-vary-v1-int-c0.json
 ```
 
-The config keys that select the system's behaviour (full schema in `VoRunnerConfig.java`):
+## Data
 
-| Key | Effect |
-|---|---|
-| `motion_model` | `homography` (default), `affine`, `similarity` |
-| `metric_readout` | Enables metric output. A missing `fx_native_px`, `h0_agl_m` or height CSV is an error, not a default |
-| `heading_readout` | Enables the external heading. `sim_nadir_camera_heading` uses a camera heading as is; `fc_ahrs_body_compass` requires the mounting offset `delta_mount_deg` |
-| `relocalization_config`, `skyline_profiles` | Enable the relocalization layer (requires both readouts). The thesis policy is `evaluation/eval_configs/int/exp-int-002/reloc-c0-primary-retry20.json` |
-| `diagnostic_refit_sidecar` | Enables the estimator-health observer |
-| `synthetic_hard_loss` | `{"acknowledge_synthetic": true, "frames": [...]}` forces the estimator's own loss branch on the listed frames; such losses are labelled `synthetic` in the relocalization events and manifest |
-
-`RelocalizationReplayApp --vo-run <dir> --relocalization-config <json> --skyline-profiles <csv>
---out <dir>` re-drives the relocalization layer over a recorded run without re-running the visual
-odometry, and it produces the same output as the live loop.
-
-On the Python side, `python -m naveval.evaluate --config <json> --out <dir>` (from `evaluation/`)
-scores a run record against ground truth, and `python -m hsreloc.simret.cli <command> --config
-<json>` (from `skyline/`) ingests simulator recordings and runs the skyline studies. Both refuse
-malformed or inconsistent inputs rather than repairing them.
-
-## Dataset
-
-The simulator recordings used in the thesis are distributed separately from this repository.
-
-TODO: Add Zenodo dataset DOI after publication.
-
-The recordings were produced with the
+The simulator recordings and processed datasets used in the thesis are archived on Zenodo:
+<https://doi.org/10.5281/zenodo.22802397>. The archive holds the twelve integration recordings, each
+as an ingested dataset (nadir images, ground truth, height channel, skyline profiles) together with
+its raw horizon captures, and two skyline batches: North and West views over three environments,
+and 67 places captured under nine appearance conditions. The recordings were produced with the
 [Optical-Navigation-UE5-Simulator](https://github.com/AdiPassover/Optical-Navigation-UE5-Simulator).
-Each is a directory with `settings.json`, the nadir stream (`vo/frames.csv`, `vo/groundtruth.csv`,
-`vo/images/`) and the horizon captures (`skyline/observations.csv`, images and ground-truth sky
-masks). The configs expect the batches at the repository root:
 
-```
-important simulator runs/<set>/Run_<stamp>/                # integration recordings
-simulator_skyline_data_both_directions/<level>/Run_<stamp>/ # two-view skyline batch
-simulator_skyline_data_extended/<level>/Run_<stamp>/        # appearance batch
-simulator_vo_data/Run_<stamp>/                               # height study pair
-```
-
-Ingested datasets, observation sessions, run records and evaluation outputs are generated from
-these into `datasets/`, `observations_sim*/`, `runs/` and `evaluations/`.
-[docs/data.md](docs/data.md) describes every format. The MARS-LVIG windows are fetched from the
-dataset's public MCAP mirror and are not redistributed here.
+[docs/data.md](docs/data.md) describes the archive, where the code expects each part, the file
+formats, and what is not included. The visual-odometry and estimator-health results use the public
+MARS-LVIG dataset, which is fetched from its MCAP mirror and not redistributed here.
 
 ## Reproducing the evaluation
 
-There is no single reproduction command. [docs/reproducing.md](docs/reproducing.md) lists, for each
-section of the thesis results chapter, the recordings, configs and scripts involved. For the
-integrated result the chain is:
+There is no single reproduction command. [docs/reproducing.md](docs/reproducing.md) maps each section
+of the thesis results chapter to the recordings, configs and scripts that produced it. For the
+integrated result, starting from the archive:
 
-1. `evaluation/tools/int/ingest_ue_run_int.py` turns a recording's nadir stream into a dataset.
-2. `python -m hsreloc.simret.cli ingest` with `evaluation/eval_configs/int/skyline-sessions/*.json`
-   ingests both horizon views.
-3. `evaluation/tools/int/export_skyline_profiles.py` writes `skyline_profiles.csv` into the dataset.
-4. `VoRunnerApp` runs the local-only (`run-*-vo-only.json`) and integrated (`run-*-int-c0.json`)
-   configs in `evaluation/eval_configs/int/exp-int-00{1,2,3}/`.
-5. `evaluation/tools/claim_closure/int_comparison_arms.py` replays the three correction policies over
-   the thirteen local-only runs and scores them against ground truth.
+1. Link each `INT/<dataset-id>/ingested_dataset/` as `datasets/<dataset-id>/`.
+2. Run the local-only (`run-*-vo-only.json`) and integrated (`run-*-int-c0.json`) configs in
+   `evaluation/eval_configs/int/exp-int-00{1,2,3}/` with `VoRunnerApp`.
+3. Score a pair with `evaluation/tools/int/evaluate_int_arms.py`, or replay the three correction
+   policies over the thirteen local-only runs with
+   `evaluation/tools/claim_closure/int_comparison_arms.py`.
 
 Stages that consume imagery need the recordings. The analysis stages need only the CSV and JSON
 outputs of the earlier stages.
@@ -198,4 +167,24 @@ outputs of the earlier stages.
 
 ## Citation
 
-If you use this software, please cite it using the metadata in [`CITATION.cff`](CITATION.cff).
+If you use this software, please cite it using the metadata in [`CITATION.cff`](CITATION.cff), or:
+
+```bibtex
+@software{peisach2026skyline,
+  author  = {Peisach, Adi},
+  title   = {Skyline-Aided {UAV} Navigation},
+  year    = {2026},
+  version = {1.0.0},
+  url     = {https://github.com/AdiPassover/skyline-aided-uav-navigation}
+}
+```
+
+The simulator dataset is a separate publication with its own DOI,
+<https://doi.org/10.5281/zenodo.22802397>.
+
+## License
+
+The code is released under the MIT License ([`LICENSE`](LICENSE)). The Gradle wrapper files
+(`gradlew`, `gradlew.bat`, `gradle/wrapper/`) are distributed under the Apache License 2.0, and
+`StitchingFactory` reproduces the construction sequence of BoofCV's `FactoryMotion2D` (Apache
+License 2.0). The simulator dataset is licensed separately, under CC BY 4.0.

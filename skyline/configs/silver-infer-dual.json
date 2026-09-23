@@ -2,7 +2,7 @@
   "_comment": [
     "SegFormer inference config for the DUAL-DIRECTION (North+West) simulator batch (EXP-SKY-011).",
     "Run with the ISOLATED SegFormer venv only (see README.md); the script imports no hsreloc module.",
-    "frame_list is written by scripts/sky_dual_study.py --stage frames from the raw run tables (image_mode reference: frames stay in the run directory).",
+    "frame_list is written by scripts/sky_dual_study.py --stage ingest from the raw run tables (image_mode reference: frames stay in the run directory).",
     "Model, preprocessing, sky class and conversion are the FROZEN EXP-SKY-005 ones; out_root is separate from the pilot and extended roots so their manifests are never rewritten.",
     "Session ids are <run_id>-north / <run_id>-west; observation ids <session_id>__<raw observation id>."
   ],

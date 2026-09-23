@@ -10,7 +10,11 @@ abstract: >-
   evaluation tooling used in the thesis.
 authors:
   - given-names: Adi
-    family-names: Passover
+    family-names: Peisach
+    affiliation: Ariel University
+version: 1.0.0
+date-released: 2026-09-24
+license: MIT
 repository-code: "https://github.com/AdiPassover/skyline-aided-uav-navigation"
 keywords:
   - UAV navigation
@@ -18,3 +22,16 @@ keywords:
   - skyline
   - relocalization
   - GNSS-denied navigation
+references:
+  - type: data
+    title: "Simulator Dataset for Stitching-Based UAV Optical Navigation With Skyline-Based Localization"
+    authors:
+      - given-names: Adi
+        family-names: Peisach
+        affiliation: Ariel University
+    year: 2026
+    publisher:
+      name: Zenodo
+    doi: 10.5281/zenodo.22802397
+    url: "https://doi.org/10.5281/zenodo.22802397"
+    license: CC-BY-4.0

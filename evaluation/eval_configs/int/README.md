@@ -16,9 +16,10 @@ constant.
 
 Datasets: `fig8-flat-{const,vary}-v1`, `mtn-r{1,2,3}-*-v1` (DEV), `interesting-r1-vary-v1`
 (evaluation), `interesting-r3-const-v1` (safety control), `interesting-r2-vary-v1` (hard-loss
-candidate) — roles frozen in `EXP-INT-001` §Dataset.
+candidate, not in the Zenodo archive) — roles frozen in `EXP-INT-001` §Dataset. The archived
+datasets are read from `datasets/<id>/` (`docs/data.md`).
 
-Run a config as a plain JVM process (after `.\gradlew.bat installDist`):
+Run a config as a plain JVM process (after `./gradlew installDist`):
 
 ```
 java -cp "build/install/skyline-aided-uav-navigation/lib/*" org.boofcv.evaluation.VoRunnerApp --config evaluation/eval_configs/int/exp-int-001/run-<dataset>-<arm>.json
@@ -56,7 +57,7 @@ committed in the pre-registration commit `1ed75806` (14:38:02, after INT arms 1�
 
 | file | what it is |
 |---|---|
-| `run-ho1-{mtn-fig8,mtn-fig8-scaled,vil-fig8,mtn-trinity}-vary-v1-vo-only.json` | The VO_ONLY baselines on the four held-out recordings (`important simulator runs/held_out1/Run_20260908_{130747,131337,133522,141325}`): field-for-field the `EXP-INT-001` VO_ONLY config, only dataset paths, `h0_agl_m` (from each recording's `settings.json`) and ids differ. |
+| `run-ho1-{mtn-fig8,mtn-fig8-scaled,vil-fig8,mtn-trinity}-vary-v1-vo-only.json` | The VO_ONLY baselines on the four held-out recordings (simulator runs `held_out1/Run_20260908_{130747,131337,133522,141325}`): field-for-field the `EXP-INT-001` VO_ONLY config, only dataset paths, `h0_agl_m` (from each recording's `settings.json`) and ids differ. |
 | `run-ho1-…-int-c0.json` | **The PRIMARY held-out arms**: the VO_ONLY config plus the frozen `reloc-c0-primary-retry20.json` and the dataset's exact-identity North+West profiles. Result (`EXP-INT-003`): **STRONG on three of four** — ATE −38.1 % / −34.2 % / −46.0 %, final 100.9 → 4.4 m, 127.5 → 1.9 m, 47.7 → 6.2 m, 7 genuine accepts, 0 wrong-place / harmful; the village run refused everything, correctly. |
 | `run-ho1-…-int-c1-4.json` | The **pre-declared comparison** arm: `../exp-int-001/reloc-c1-4-fallback.json` verbatim (retry gap 30). Not the milestone arm. |
 | `reloc-c1-4-fallback-retry20.json`, `run-ho1-…-int-c1-4-retry20.json` | The pre-declared comparison arm with the accepted `DEC-INT-008` gap applied to the fallback (one key changed, created in the pre-registration). On held-out data C1-4 accepts references 14–31 m away (its lag freedom raises far scores, `EXP-SKY-013`), once severely harmfully on the village run — the held-out confirmation of `DEC-INT-007`. |
@@ -69,7 +70,9 @@ One config per recording × view (`north` / `west`), for the unmodified SKY adap
 options as the `EXP-SKY-013` figure-eight sessions, which the two flat figure-eight
 datasets reuse from `observations_sim_fig8/`. Profiles are then exported per dataset with
 `export_skyline_profiles.py --sim-observations … --vo-frames …` (exact `vo_frame_id` identity) into
-`datasets/<id>/skyline_profiles.{csv,json}`.
+`datasets/<id>/skyline_profiles.{csv,json}`. Their `run_dir` is the capture's development location;
+the archive holds each capture as `INT/<id>/raw_skyline_capture/`, and `docs/workflows.md` (Skyline
+profiles) shows how to ingest it from there.
 
 ## Historical — the 2026-09-07 starting policy (superseded as a starting default by `DEC-INT-007`)
 
