@@ -189,7 +189,47 @@ Recorded-flight results use MARS-LVIG, fetched from its MCAP mirror on Hugging F
 Datasets are built with `evaluation/tools/exp_vo_007/ingest_sequence.py`;
 `exp_vo_007/fetch_amtown01.sh` and `exp_vo_013/fetch_amtown01_full.sh` record the complete argument
 sets for the AMtown01 windows, and `exp_vo_007/derive_yaw_offset.py` derives the per-sequence
-heading offset those scripts require. Camera intrinsics come from the UAVScenes calibration files.
+heading offset those scripts require.
+
+**Camera intrinsics.** MARS-LVIG's MCAP files carry no camera calibration. The intrinsics come
+from UAVScenes (Hugging Face `sijieaaa/UAVScenes`), which republishes MARS-LVIG with per-frame
+calibration. They are in the `sampleinfos_interpolated.json` file for each scene inside
+[`interval5_CAM_LIDAR.zip`](https://huggingface.co/datasets/sijieaaa/UAVScenes/resolve/main/interval5_CAM_LIDAR.zip)
+(28,682,115,865 bytes), at `interval5_CAM_LIDAR/interval5_<scene>/sampleinfos_interpolated.json`.
+The zip is large, but a single entry can be read with HTTP range requests, as
+`exp_vo_007/probe_candidates.py` does. Every entry holds a `P3x3` matrix plus `K1`–`K3`, `P1`,
+`P2`, `Width` and `Height`. Within each file these values are identical for every frame, and the
+extraction step is to copy them:
+
+| scene | entries | fx = fy | cx | cy |
+|---|---|---|---|---|
+| HKairport01, HKairport03 | 7,199 / 3,023 | 1471.0653076171875 | 1172.3576676454904 | 1046.3674075128438 |
+| AMtown01, AMtown03 | 12,944 / 5,599 | 1469.4898681640625 | 1174.0027077275518 | 1049.91204868583 |
+
+SHA-256 of the extracted files:
+
+```text
+dc53d5fead50913b7730e35eff3b908ed89c0e29ddebd180f1555034ace808d6  interval5_HKairport01/sampleinfos_interpolated.json
+8f5e175681289ad7ba3ea367ade61a0727e6fdf26467c2021d66feafd6a6ff97  interval5_HKairport03/sampleinfos_interpolated.json
+36df2da500f2f8eaf417760fefc77e895eab9d096752795d9540208055eac64a  interval5_AMtown01/sampleinfos_interpolated.json
+c373b35bc746aca823261675de6530cff7ba1957ae408b1fa1c11b61a77d4ba4  interval5_AMtown03/sampleinfos_interpolated.json
+```
+
+Distortion is zero and the image is 2448 × 2048 in all four scenes. For the HKairport windows, when
+`--intrinsics-json` is omitted, `ingest_sequence.py` uses the same values built into
+`naveval.ingest_mars_lvig.CAMERA_INTRINSICS`.
+For the AMtown windows, pass `--intrinsics-json <file>` (the `INTRINSICS` variable of the two
+`fetch_amtown01*.sh` scripts), pointing at a JSON object with these keys:
+
+```json
+{"fx": 1469.4898681640625, "fy": 1469.4898681640625, "cx": 1174.0027077275518,
+ "cy": 1049.91204868583, "k1": 0.0, "k2": 0.0, "k3": 0.0, "p1": 0.0, "p2": 0.0,
+ "width": 2448, "height": 2048, "source": "UAVScenes sampleinfos_interpolated.json for AMtown01"}
+```
+
+The ingest writes the intrinsics into `dataset.json`. The metric-readout configs declare the same
+fx as `fx_native_px`. No UAVScenes file is redistributed here; its license is on the
+[dataset card](https://huggingface.co/datasets/sijieaaa/UAVScenes).
 
 | result | code |
 |---|---|

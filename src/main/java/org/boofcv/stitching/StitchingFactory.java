@@ -43,6 +43,11 @@ import javax.annotation.Nullable;
 
 /**
  * Factory and Builder for creating configured instances of {@link StitchingFromMotion2D}.
+ *
+ * <p>Portions of this file ({@code createInstrumentedMotion2D}, {@code createSimilarityMotion2D},
+ * {@code createProbedMotion2D}) are adapted from BoofCV 0.44's {@code FactoryMotion2D}, Copyright
+ * (c) 2021 Peter Abeles, licensed under the Apache License 2.0. See {@code THIRD_PARTY_NOTICES.md}
+ * and {@code LICENSES/Apache-2.0.txt}.
  */
 public class StitchingFactory {
 

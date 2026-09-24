@@ -114,8 +114,10 @@ java -cp "build/install/skyline-aided-uav-navigation/lib/*" org.boofcv.evaluatio
 
 ## Data
 
-The simulator recordings and processed datasets used in the thesis are archived on Zenodo:
-<https://doi.org/10.5281/zenodo.22802397>. The archive holds the twelve integration recordings, each
+The simulator recordings and processed datasets behind the skyline-retrieval and
+integrated-navigation results are archived on Zenodo: <https://doi.org/10.5281/zenodo.22802397>.
+The two game-engine recordings behind the constant-versus-varying-height VO comparison are not
+archived. The archive holds the twelve integration recordings, each
 as an ingested dataset (nadir images, ground truth, height channel, skyline profiles) together with
 its raw horizon captures, and two skyline batches: North and West views over three environments,
 and 67 places captured under nine appearance conditions. The recordings were produced with the
@@ -184,7 +186,7 @@ The simulator dataset is a separate publication with its own DOI,
 
 ## License
 
-The code is released under the MIT License ([`LICENSE`](LICENSE)). The Gradle wrapper files
-(`gradlew`, `gradlew.bat`, `gradle/wrapper/`) are distributed under the Apache License 2.0, and
-`StitchingFactory` reproduces the construction sequence of BoofCV's `FactoryMotion2D` (Apache
-License 2.0). The simulator dataset is licensed separately, under CC BY 4.0.
+The code is released under the MIT License ([`LICENSE`](LICENSE)). Two source files adapt parts
+of BoofCV, and the Gradle wrapper files come from Gradle; both are under the Apache License 2.0
+([`LICENSES/Apache-2.0.txt`](LICENSES/Apache-2.0.txt)). [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md)
+lists these files. The simulator dataset is licensed separately, under CC BY 4.0.

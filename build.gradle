@@ -3,7 +3,7 @@ plugins {
     id 'application'
 }
 
-group = 'org.myname'
+group = 'io.github.adipassover'
 version = '1.0.0'
 
 repositories {

@@ -31,6 +31,10 @@ import javax.annotation.Nullable;
  * consumes. It affects <em>rendering only</em>. Navigation never reads a rendered pixel: it reads
  * the double-precision model through {@code MotionModelSupport}, and {@link #convertH} — the path
  * the run record and every pose consumer use — is exact.
+ *
+ * <p>Adapted from BoofCV 0.44's {@code FactoryStitchingTransform.createAffine_F64()}, Copyright (c)
+ * 2021 Peter Abeles, licensed under the Apache License 2.0. See {@code THIRD_PARTY_NOTICES.md} and
+ * {@code LICENSES/Apache-2.0.txt}.
  */
 public final class SimilarityStitchingTransform implements StitchingTransform<Sim2_F64> {
 

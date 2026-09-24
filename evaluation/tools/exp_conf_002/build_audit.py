@@ -585,7 +585,7 @@ def build_html(cases: list[dict], checks: dict) -> str:
         if vc:
             adj = "" if vc.get("adjudicable", True) else \
                 " <b>[marked: difference not visually adjudicable at card scale]</b>"
-            parts.append(f"<div class='vc'><b>Claude visual check</b> (qualitative only; not "
+            parts.append(f"<div class='vc'><b>Qualitative visual check</b> (qualitative only; not "
                          f"ground truth, does not override the diagnostics): "
                          f"{html.escape(vc['note'])}{adj}</div>")
         for suffix in ("overview", "zoom", "diag"):
